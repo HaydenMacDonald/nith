@@ -1,0 +1,80 @@
+theme = "hugo-PaperMod"
+baseURL = "http://needleinthehay.ca/"
+languageCode = "en-us"
+title = "Needle in the Hay"
+pygmentsUseClasses = true
+
+[[menu.main]]
+identifier = "archives"
+name = "Blog"
+url = "/archives/"
+weight = 10
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 20
+
+[[menu.main]]
+identifier = "resume"
+name = "Resume"
+url = "/cv/"
+weight = 30
+
+[[menu.main]]
+identifier = "data-gallery"
+name = "Data Gallery"
+url = "/data-gallery/"
+weight = 40
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 50
+
+[params]
+env = "production"
+title = "NeedleInTheHay"
+description = "ExampleSite description"
+author = "Hayden MacDonald"
+images = [ "<link or path of image for opengraph, twitter-cards>" ]
+defaultTheme = "auto"
+disableThemeToggle = false
+ShowReadingTime = true
+ShowShareButtons = true
+disableSpecial1stPost = false
+comments = false
+hidemeta = false
+showtoc = false
+tocopen = false
+
+  [params.profileMode]
+  enabled = true
+  title = "<Title>"
+  imageUrl = "/headshotbw.jpg"
+  imageTitle = "That's me!"
+  imageWidth = 120
+  imageHeight = 120
+
+  [[params.socialIcons]]
+  name = "email"
+
+  [[params.socialIcons]]
+  url = "mailto:hmd@needleinthehay.ca"
+
+  [[params.socialIcons]]
+  name = "github"
+
+  [[params.socialIcons]]
+  url = "https://github.com/HaydenMacDonald"
+
+[outputs]
+home = [ "HTML", "RSS", "JSON" ]
+
+[markup.highlight]
+codeFences = true
+guessSyntax = true
+lineNos = false
+style = "monokai"

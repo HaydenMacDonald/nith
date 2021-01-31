@@ -44,6 +44,20 @@ params:
     showtoc: false
     tocopen: false
 
+    profileMode:
+        enabled: true
+        title: "<Title>" # optional default will be site title
+        imageUrl: "/headshotbw.jpg" # optional
+        imageTitle: "That's me!" # optional
+        imageWidth: 120 # custom size
+        imageHeight: 120 # custom size
+
+    socialIcons: # optional
+        - name: "email"
+        - url: "hmd@needleinthehay.ca"
+        - name: "github"
+        - url: "https://github.com/HaydenMacDonald"
+
 outputs:
     home:
         - HTML
