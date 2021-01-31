@@ -2,7 +2,6 @@ theme = "hugo-PaperMod"
 baseURL = "http://needleinthehay.ca/"
 languageCode = "en-us"
 title = "Needle in the Hay"
-pygmentsUseClasses = true
 
 [[menu.main]]
 identifier = "archives"
@@ -19,7 +18,7 @@ weight = 20
 [[menu.main]]
 identifier = "resume"
 name = "Resume"
-url = "/cv/"
+url = "/cv.html"
 weight = 30
 
 [[menu.main]]
@@ -37,7 +36,7 @@ weight = 50
 [params]
 env = "production"
 title = "NeedleInTheHay"
-description = "ExampleSite description"
+description = "A Data Blog"
 author = "Hayden MacDonald"
 images = [ "<link or path of image for opengraph, twitter-cards>" ]
 defaultTheme = "auto"
@@ -51,8 +50,8 @@ showtoc = false
 tocopen = false
 
   [params.profileMode]
-  enabled = true
-  title = "<Title>"
+  enabled = false
+  title = "Hayden MacDonald"
   imageUrl = "/headshotbw.jpg"
   imageTitle = "That's me!"
   imageWidth = 120
@@ -65,16 +64,43 @@ tocopen = false
   url = "mailto:hmd@needleinthehay.ca"
 
   [[params.socialIcons]]
+  name = "linkedin"
+
+  [[params.socialIcons]]
+  url = "https://www.linkedin.com/in/hayden-macdonald/"
+
+  [[params.socialIcons]]
   name = "github"
 
   [[params.socialIcons]]
   url = "https://github.com/HaydenMacDonald"
 
+  [[params.socialIcons]]
+  name = "twitter"
+
+  [[params.socialIcons]]
+  url = "https://twitter.com/HYDNMCDNLD"
+
+  [params.assets]
+  favicon = "/favicon.ico"
+  favicon16x16 = "/favicon-16x16.png"
+  favicon32x32 = "/favicon-32x32.png"
+  apple_touch_icon = "/apple-touch-icon.png"
+  disableHLJS = true
+
+  [params.label]
+  text = "Needle in the Hay"
+  icon = "/apple-touch-icon-2.png"
+  iconHeight = 25
+
+  [params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1_000
+  threshold = 0.4
+  minMatchCharLength = 0
+  keys = [ "title", "permalink", "summary", "content" ]
+
 [outputs]
 home = [ "HTML", "RSS", "JSON" ]
-
-[markup.highlight]
-codeFences = true
-guessSyntax = true
-lineNos = false
-style = "monokai"

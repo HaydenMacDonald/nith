@@ -15,7 +15,7 @@ menu:
           weight: 20
         - identifier: resume
           name: Resume
-          url: /cv/
+          url: /cv.html
           weight: 30
         - identifier: data-gallery
           name: Data Gallery
@@ -29,7 +29,7 @@ menu:
 params:
     env: production # to enable google analytics, opengraph, twitter-cards and schema.
     title: NeedleInTheHay
-    description: "ExampleSite description"
+    description: "A Data Blog"
     author: Hayden MacDonald
     images: ["<link or path of image for opengraph, twitter-cards>"]
 
@@ -45,8 +45,8 @@ params:
     tocopen: false
 
     profileMode:
-        enabled: true
-        title: "<Title>" # optional default will be site title
+        enabled: false
+        title: "Hayden MacDonald" # optional default will be site title
         imageUrl: "/headshotbw.jpg" # optional
         imageTitle: "That's me!" # optional
         imageWidth: 120 # custom size
@@ -54,22 +54,38 @@ params:
 
     socialIcons: # optional
         - name: "email"
-        - url: "hmd@needleinthehay.ca"
+        - url: "mailto:hmd@needleinthehay.ca"
+        - name: "linkedin"
+        - url: "https://www.linkedin.com/in/hayden-macdonald/"
         - name: "github"
         - url: "https://github.com/HaydenMacDonald"
+        - name: "twitter"
+        - url: "https://twitter.com/HYDNMCDNLD"
+
+    assets:
+        favicon: "/favicon.ico"
+        favicon16x16: "/favicon-16x16.png"
+        favicon32x32: "/favicon-32x32.png"
+        apple_touch_icon: "/apple-touch-icon.png"
+        disableHLJS: true
+
+    label:
+        text: "Needle in the Hay"
+        icon: /apple-touch-icon-2.png
+        iconHeight: 35
+
+    fuseOpts:
+        isCaseSensitive: false
+        shouldSort: true
+        location: 0
+        distance: 1000
+        threshold: 0.4
+        minMatchCharLength: 0
+        keys: ["title", "permalink", "summary", "content"]
 
 outputs:
     home:
         - HTML
         - RSS
         - JSON # is necessary
-
-pygmentsUseClasses: true
-markup:
-     highlight:
-         # anchorLineNos: true
-         codeFences: true
-         guessSyntax: true
-         lineNos: false
-         style: monokai
 
