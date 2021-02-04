@@ -7,7 +7,7 @@
 .hljs {
   display: block;
   padding: 0.5em;
-  color: #333333;
+  color: var(--content);
   overflow-x: auto;
 }
 
@@ -27,14 +27,14 @@
 .hljs-keyword,
 .hljs-selector-tag,
 .hljs-type {
-  color: #333333;
+  color: var(--content);
 }
 
 .hljs-literal,
 .hljs-symbol,
 .hljs-bullet,
 .hljs-attribute {
-  color: #333333;
+  color: var(--content);
 }
 
 .hljs-section,
@@ -43,7 +43,7 @@
 }
 
 .hljs-tag {
-  color: #333333;
+  color: var(--content);
 }
 
 .hljs-title,
@@ -52,7 +52,7 @@
 .hljs-selector-class,
 .hljs-selector-attr,
 .hljs-selector-pseudo {
-  color: #333333;
+  color: var(--content);
 }
 
 .hljs-addition {

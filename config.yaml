@@ -44,8 +44,12 @@ params:
     showtoc: false
     tocopen: false
 
+    homeInfoParams:
+        Title: Hi I'm Hayden
+        Content: This is my data analytics blog!
+
     profileMode:
-        enabled: false
+        enabled: true
         title: "Hayden MacDonald" # optional default will be site title
         imageUrl: "/headshotbw.jpg" # optional
         imageTitle: "That's me!" # optional

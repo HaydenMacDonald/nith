@@ -52,8 +52,10 @@
         <div class="logo">
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ .Site.Params.label.text | default .Site.Title }} (Alt + H)">
                 {{- if .Site.Params.label.icon }}
-                <img src="{{- .Site.Params.label.icon -}}" alt="logo" aria-label="logo"
-                    height="{{- .Site.Params.label.iconHeight | default "30px" -}}">
+                <img id="moon" src="{{- .Site.Params.label.icon -}}" aria-label="logo"
+                        height="{{- .Site.Params.label.iconHeight | default "30px" -}}"/>
+                <img id="sun" src="{{- .Site.Params.label.iconDark -}}" aria-label="logo"
+                        height="{{- .Site.Params.label.iconHeight | default "30px" -}}"/>
                 {{- end -}}
                 {{- .Site.Params.label.text | default .Site.Title -}}
             </a>

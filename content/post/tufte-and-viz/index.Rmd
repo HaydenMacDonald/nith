@@ -9,7 +9,7 @@ tags:
 - data visualization
 - review
 - R
-description: "I recently attended Edward Tufte's course, 'Presenting Data and Information', in Boston."
+description: "A course review and data visualization exercise."
 ---
 
 ```{r page formatting, include=FALSE}
@@ -123,7 +123,7 @@ As an exercise, I will use the principles mentioned above to improve a data visu
 So here is a visualization from my thesis that I have chosen to revamp:  
 &nbsp;
 
-![Figure 4. Spatial working memory accuracy in each arm pattern across increasing levels of RI. Spatial working memory was measured as a percentage of correct choices within the first four choices of the test phase. Errors bars represent standard error. Chance accuracy (41%) is denoted by the dotted line.](index_files/figures-html/viz-1.png)  
+![Figure 4. Spatial working memory accuracy in each arm pattern across increasing levels of RI. Spatial working memory was measured as a percentage of correct choices within the first four choices of the test phase. Errors bars represent standard error. Chance accuracy (41%) is denoted by the dotted line.](index_files/figures-html/exp1.png)  
 
 Note that I will not give context for the visualization by explaining the experiment. Instead, I want to focus purely on enhancing its design. If you would like to understand the data, feel free to refer to [my thesis](https://ir.lib.uwo.ca/etd/5511/){target="_blank"}.  
 &nbsp;  
@@ -181,8 +181,8 @@ rdata3 <- rdata %>%
     summarize(mean2 = mean(mean1), stderror = sd(mean1)/sqrt(8))
 ```
 
-```{r render, eval=FALSE, echo=FALSE, results=FALSE, warning=FALSE, message=FALSE}
-png(filename = "revamp.png",
+```{r render, echo=FALSE, results=FALSE, warning=FALSE, message=FALSE}
+png(filename = "index_files/figures-html/revamp.png",
     type = "cairo", 
     units = "in", 
     width = 8,
@@ -213,8 +213,9 @@ rdata3 %>%
     scale_x_log10() +
     scale_y_continuous(limits = c(0, 100)) +
     scale_color_manual(values = c("#9bbb59", "#c0504d", "#4f81bd")) +
-    labs(x = "Log Retention Interval", y = "Percent Correct (%)") +
+    labs(x = "Retention Interval (minutes, log scale)", y = "Percent Correct (%)") +
     geom_line(y = 41, colour = "black", linetype = 2) +
+    geom_text(mapping = aes(x = 12, y = 43, label = "Chance accuracy (41%)"), colour = "black") +
     guides(colour = "none") +
     theme_bw()
 

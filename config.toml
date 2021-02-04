@@ -49,8 +49,12 @@ hidemeta = false
 showtoc = false
 tocopen = false
 
+  [params.homeInfoParams]
+  Title = "Hi I'm Hayden"
+  Content = "This is my data analytics blog!"
+
   [params.profileMode]
-  enabled = false
+  enabled = true
   title = "Hayden MacDonald"
   imageUrl = "/headshotbw.jpg"
   imageTitle = "That's me!"
@@ -59,26 +63,18 @@ tocopen = false
 
   [[params.socialIcons]]
   name = "email"
-
-  [[params.socialIcons]]
   url = "mailto:hmd@needleinthehay.ca"
 
   [[params.socialIcons]]
   name = "linkedin"
-
-  [[params.socialIcons]]
   url = "https://www.linkedin.com/in/hayden-macdonald/"
 
   [[params.socialIcons]]
   name = "github"
-
-  [[params.socialIcons]]
   url = "https://github.com/HaydenMacDonald"
 
   [[params.socialIcons]]
   name = "twitter"
-
-  [[params.socialIcons]]
   url = "https://twitter.com/HYDNMCDNLD"
 
   [params.assets]
@@ -86,12 +82,13 @@ tocopen = false
   favicon16x16 = "/favicon-16x16.png"
   favicon32x32 = "/favicon-32x32.png"
   apple_touch_icon = "/apple-touch-icon.png"
-  disableHLJS = true
+  disableHLJS = false
 
   [params.label]
   text = "Needle in the Hay"
   icon = "/apple-touch-icon-2.png"
-  iconHeight = 25
+  iconDark = "/apple-touch-icon-dark.png"
+  iconHeight = 35
 
   [params.fuseOpts]
   isCaseSensitive = false

@@ -51,8 +51,8 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 
 ### Open Source
 
-- <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">squashinformr</a>
-- <a href="https://needleinthehay.ca/hmdrmd/" target="_blank">hmdrmd</a>
+- <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">`squashinformr`</a>
+- <a href="/post/hmdrmd/" target="_blank">`hmdrmd`</a>
 
 ----
 &nbsp;  
