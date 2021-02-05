@@ -13,7 +13,8 @@
 
 .hljs-comment,
 .hljs-meta {
-  color: #969896;
+  font-style: italic;
+  color: var(--content);
 }
 
 .hljs-variable,

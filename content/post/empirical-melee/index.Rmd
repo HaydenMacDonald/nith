@@ -5,14 +5,8 @@ date: '2018-09-18'
 output:
   html_document:
     df_print: paged
-slug: hbox-bayes
 tags:
 - R
-- esports
-- bayes
-categories:
-- R
-- rstats
 - esports
 - bayes
 description: "Empirical Bayes Estimation of Hungrybox's 2017 Character Matchup Win Averages."
@@ -23,17 +17,17 @@ options(digits = 7)
 ```
 
 ## Melee!
-&nbsp;  
+  
 [Super Smash Bros. Melee for the Nintendo GameCube](https://en.wikipedia.org/wiki/Super_Smash_Bros._Melee){target="_blank"} was released in 2001. Since then, it has become one of the most adored games of the last twenty years. The game features many characters from various Nintendo game franchises, which players choose between before entering a match. The objective of each match is relatively simple: fight your opponent(s) and hit them beyond the boundaries of the stage. In contrast to fighting games, each time a player is struck they *gain* percentage points. As these percentage points accumulate, each successive attack received sends the player's character further away and closer to the stage boundaries. Each time a player goes past the stage boundary, they lose a "stock" (i.e. a life). Lose all your stocks and the game is over.  
 &nbsp;  
-![Competetive Melee](/img/hboxvzain.PNG)  
+![Competetive Melee](/hboxvzain.PNG)  
 
 Today, Melee is a popular esport across North America and Europe, where players can watch or enter tournaments with cash prizes. Although the game is simple in premise, mechanically, the game is incredibly complicated and players require a tremendous amount of practice to become a highly skilled at the game.
 
 The best Melee player in the world is Juan "Hungrybox" DeBiedma, currently ranked #1 by a panel of competive players and community figures. Hungrybox plays Jigglypuff, a character originally found in the Pokémon franchise, and he is sponsored by Team Liquid, a high profile esports organization.
 
 His placings in the image below are from the first half of 2018.  
-&nbsp;  
+  
 
 ![Panda Global Rankings Melee: Summer 2018](https://image.redbull.com/rbcom/052/2018-08-02/5a64fdf3-da49-443a-82bd-880ae5f04c36/0001/1/1050/1/mpgr-summer-2018-1.png)
 
@@ -58,7 +52,7 @@ Although Tafo's comments are also made at the expense of fans, he includes a dat
 The essential sentiment is that fans tend to look past sample size when making inferences on matchup win rates or general performance.  
 
 Here is the same data reorganized:  
-&nbsp;  
+  
 ```{r Data first look, echo=FALSE, message = FALSE}
 library(dplyr)
 Hbox <- read.csv(file = "Hbox2017.csv")
@@ -68,7 +62,7 @@ Hbox %>%
 &nbsp;  
 Here is where the essential question of this blog post comes in.  
 
-Does Hungrybox win more versus Fox than he does versus [Young Link](https://www.ssbwiki.com/Young_Link_(SSBM))? At face value, the answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he wins less versus Young Link, right?  
+Does Hungrybox win more versus Fox than he does versus [Young Link](https://www.ssbwiki.com/Young_Link_(SSBM){target="_blank"}? At face value, the answers seems obvious. Hungrybox wins 58.23% of his matches versus Fox and 50.00% of his matches versus Young Link, so clearly he wins less versus Young Link, right?  
 
 In order to make that conclusion, one would have to disregard the sample size or the amount of evidence behind each matchup. Up until 2017/11/07, Hungrybox had won 2/4 matches versus Young Link, whereas he had won 145/249 matches versus Fox. Knowing this, can we confidently say that Hungrybox's win percentage versus Young Link is truly lower than his win percentage versus Fox?  
 
@@ -81,26 +75,41 @@ Thankfully, there is a statistical technique called **empirical Bayes estimation
 ----
 
 ### Set-Up
-&nbsp;  
+  
 ```{r SetUp, message = FALSE, warning = FALSE}
-#data tidying and wrangling
+## data tidying and wrangling
 library(dplyr)
 library(tidyr)
 
-#visualization
+## visualization
 library(ggplot2)
 library(ggthemes)
 library(RColorBrewer)
 library(ggrepel)
 
-#stats
+## stats
 library(MASS)
 ```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggdark)
+library(Cairo)
+
+theme_needle_dark <- function(base_size = 11, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {
+  ggdark::dark_mode(theme_light(base_size, base_family, base_line_size, base_rect_size)) %+replace%
+    theme(plot.background = element_rect(fill = "#1d1e20", colour = "#1d1e20", size = 0),
+          panel.background = element_rect(fill = "#1d1e20", colour = NA),
+          legend.background = element_rect(fill = "#1d1e20", colour = NA),
+          panel.grid.major = element_line(colour = "#474747"),
+          panel.grid.minor = element_line(colour = "#474747"))
+}
+```
+
 
 ----
 
 ### Import and Arrange Data
-&nbsp;  
+  
 Here is the Hungrybox's matchup data arranged by win percentage in descending order.  
 
 ```{r Arrange}
@@ -112,32 +121,49 @@ Hbox %>%
 &nbsp;  
 And here is the win percentage data visualized.  
 
-```{r Visualize matchups, echo = FALSE, message = FALSE}
+```{r visualize-matchups, echo = FALSE, message = FALSE, include=FALSE}
+## Light theme
 Hbox %>%
   ggplot(aes(x = reorder(OpponentCharacter, WinPercent), y = WinPercent)) + 
-  geom_point(aes(colour = WinPercent), show.legend = FALSE) + 
-  geom_segment(aes(colour = WinPercent, xend = OpponentCharacter, yend = 0), show.legend = FALSE) +
+  geom_point(colour = "#4b9ad8", show.legend = FALSE) + 
+  geom_segment(aes(xend = OpponentCharacter, yend = 0), colour = "#4b9ad8", show.legend = FALSE) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) + 
   labs(y = "Win Percentage", x = "Opponent Character") +
-  scale_y_continuous(breaks = seq(0, 100, 10)) +
-  coord_cartesian(ylim = c(0,100)) +
-  coord_flip()
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
+  coord_flip(ylim = c(0,100))
+
+## Dark theme
+Hbox %>%
+  ggplot(aes(x = reorder(OpponentCharacter, WinPercent), y = WinPercent)) + 
+  geom_point(colour = "#4b9ad8", show.legend = FALSE) + 
+  geom_segment(aes(xend = OpponentCharacter, yend = 0), colour = "#4b9ad8", show.legend = FALSE) +
+  labs(y = "Win Percentage", x = "Opponent Character") +
+  coord_flip(ylim = c(0,100)) +
+  theme_needle_dark() +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5),
+        axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35))
 ```
+<picture>
+    <img id="moon" srcset="index_files/figure-html/visualize-matchups-1.png"/>
+    <img id="sun" srcset="index_files/figure-html/visualize-matchups-2.png"/>
+</picture>
 
 Across the y-axis is the characters of Hungrybox's opponents and the x-axis is Hungrybox's win percentage in those matchups at the time of 2017/11/07. Again, the raw data suggest that Hungrybox wins less versus Young Link than versus Fox. My goal is to generate a better approximation of Hungrybox's win averages across all matchups.   
 
 ----
 
 ### Win Averages
-&nbsp;
+  
 ```{r Win Averages Histogram}
 #Calculate win averages
 Hbox <- Hbox %>%
   mutate(WinAverage = Wins/TotalGames)
 ```
 
-```{r echo=FALSE, message = FALSE, warning = FALSE}
+```{r histogram, echo=FALSE, message = FALSE, warning = FALSE, include=FALSE}
 #Round WinAverage to 2 decimals
 Hbox2 <- Hbox %>%
   mutate(WinAverage = sprintf("%0.2f", WinAverage)) %>%
@@ -148,19 +174,34 @@ Hbox2 %>%
   ggplot(aes(x = WinAverage)) + 
   geom_histogram(stat = "count", binwidth = .05) +
   theme_bw() +
-  labs(x = "Win Average", y = "Count")
+  labs(x = "Win Average", y = "Count") +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5))
+
+# Dark theme plot histogram of win averages 
+Hbox2 %>%
+  ggplot(aes(x = WinAverage)) + 
+  geom_histogram(stat = "count", binwidth = .05) +
+  theme_needle_dark() +
+  labs(x = "Win Average", y = "Count") +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5))
 ```
+<picture>
+    <img id="moon" srcset="index_files/figure-html/histogram-1.png"/>
+    <img id="sun" srcset="index_files/figure-html/histogram-2.png"/>
+</picture>
 
 Alternatively, here is a the distribution of win averages across all matchups. This distribution leaves a lot to be desired because it has a small number of observations. This is due to the fact that there are not many characters (out of the 26 possible characters) that are played in high level Melee. Unfortunately, the small amount of data will not yield the strongest approximations of win percentages, but we will continue with what we have.  
 
 ----
 
 ### Prior
-&nbsp;  
+  
 For this analysis, we will be relying on the [beta distribution](https://en.wikipedia.org/wiki/Beta_distribution){target="_blank"} and its parameters, alpha and beta, to model the distribution of win averages. Secondly, we will use that distribution to inform new estimates for each of Hungrybox's character matchups.  
 
 First, we must estimate the alpha and beta parameters for the beta distribution. For our purposes, we will use the "method of moments" to estimate the alpha and beta parameters from the mean and variance of our data using this custom function:  
-&nbsp;  
+  
 ```{r Method of Moments function}
 estBetaParams <- function(mu, var) {
      alpha <- ((1 - mu) / var - 1 / mu) * mu ^ 2
@@ -172,7 +213,7 @@ estBetaParams <- function(mu, var) {
 > Credit goes to [this Cross Validated user](https://stats.stackexchange.com/questions/12232/calculating-the-parameters-of-a-beta-distribution-using-the-mean-and-variance){target="_blank"} for their insight and function.    
 
 So, let's calculate the mean and variance of Hungrybox's win averages across all matchups and plug those values into the `estBetaParams` function.  
-&nbsp;  
+  
 ```{r Method of Moments estimates}
 H.mu <- mean(Hbox$WinAverage)
 H.var <- var(Hbox$WinAverage)
@@ -185,15 +226,34 @@ Hbox.est
 &nbsp;  
 The resulting alpha and beta parameters will inform the shape of our beta distribution (shown in red).  
 
-```{r Visualize beta distribution, echo = FALSE}
+```{r visualize-beta-distribution, echo = FALSE, include=FALSE}
+## Light theme
 Hbox %>%
   ggplot(aes(WinAverage)) + 
   geom_histogram(aes(y = ..density..), binwidth = .01) + 
   stat_function(fun = function(x) dbeta(x, Hbox.est$alpha, Hbox.est$beta), 
                 color = "red", size = 1) +
   theme_bw() +
-  labs(x = "Win Average", y = "Density")
+  labs(x = "Win Average", y = "Density") +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5))
+
+## Dark theme
+Hbox %>%
+  ggplot(aes(WinAverage)) + 
+  geom_histogram(aes(y = ..density..), binwidth = .01) + 
+  stat_function(fun = function(x) dbeta(x, Hbox.est$alpha, Hbox.est$beta), 
+                color = "red", size = 1) +
+  theme_needle_dark() +
+  labs(x = "Win Average", y = "Density") +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5))
 ```
+<picture>
+    <img id="moon" srcset="index_files/figure-html/visualize-beta-distribution-1.png"/>
+    <img id="sun" srcset="index_files/figure-html/visualize-beta-distribution-2.png"/>
+</picture>
+
 
 Again, our distribution and number of observations leaves something to be desired. Nonetheless, we will use this distribution to inform our approximations of Hungrybox's individual character matchups.  
 
@@ -214,15 +274,15 @@ Hbox.eb %>%
   arrange(desc(abs(eb_estimate - WinAverage)))
 ```
 
-
 The data above have been arranged in descending order by the absolute difference between their new win average estimates and their old win average estimates. Young Link shows the largest change in win percentage between the two estimates, which is interesting considering that we were hoping to improve our estimate of this specific matchup. Alteratively, Hungrybox's win percentage in the Fox matchup shows one of the smallest differences between the two estimates. This makes sense considering that we have a large amount of data for that specific matchup.  
 
 
 ----
 
 ### Visualize the changes in win average estimates
-&nbsp;  
-```{r echo = FALSE}
+  
+```{r win-average-estimates, echo = FALSE, include=FALSE}
+## Light theme
 Hbox.eb %>%
   ggplot(aes(WinAverage, eb_estimate, colour = TotalGames)) + 
   geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), 
@@ -230,18 +290,42 @@ Hbox.eb %>%
   geom_point() + 
   geom_abline(color = "red") + 
   geom_text_repel(aes(label = OpponentCharacter)) +
-  scale_colour_gradient(trans = "log", 
+  scale_colour_viridis_c(option = "plasma", begin = 0.25, end = 0.75, trans = "log", 
                         breaks = 10 ^ (1:5)) + 
   labs(x = "Win Average", y = "Empirical Bayes Matchup Average") +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35),
+        axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5)) +
+  guides(colour = guide_colourbar(title = "Total Games"))
+
+## Dark theme
+Hbox.eb %>%
+  ggplot(aes(WinAverage, eb_estimate, colour = TotalGames)) + 
+  geom_hline(yintercept = Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta), 
+             color = "red", lty = 2) + 
+  geom_point() + 
+  geom_abline(color = "red") + 
+  geom_text_repel(aes(label = OpponentCharacter)) +
+  scale_colour_viridis_c(option = "plasma", begin = 0.25, end = 0.75, trans = "log", 
+                        breaks = 10 ^ (1:5)) + 
+  labs(x = "Win Average", y = "Empirical Bayes Matchup Average") +
+  theme_needle_dark() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35),
+        axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5)) +
   guides(colour = guide_colourbar(title = "Total Games"))
 ```
+<picture>
+    <img id="moon" srcset="index_files/figure-html/win-average-estimates-1.png"/>
+    <img id="sun" srcset="index_files/figure-html/win-average-estimates-2.png"/>
+</picture>
+
 
 Generally, we can see that as win averages increase, so do the empirical Bayes estimations of the win percentages. We also have two distinct red lines that represent different insights.  
 
 The y-intercept of the dashed red line indicates the estimate of Hungrybox's win average in a matchup given *no* data. What does this value tell us? Well, what if we had no matchup evidence at all for a matchup? Luigi or Peach are characters that are not included in this dataset. So what would our best estimate of Hungrybox's win averages versus those characters?  
-&nbsp;  
+  
 ```{r All matchups given no evidence}
 sprintf("%.3f", Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))
 ```
@@ -252,15 +336,34 @@ The solid red line indicates where Hungrybox's win averages are equal to the Bay
 
 Let's make a cleveland dot plot to visualize the differences between the new and old win average estimates.  
 
-```{r Results, echo = FALSE, message = FALSE}
-#Cleveland dot plot
+```{r Results, echo = FALSE, message = FALSE, include=FALSE}
+#Cleveland dot plot light theme
 Hbox.eb %>%
   ggplot(aes(x = reorder(OpponentCharacter, WinAverage))) + 
-  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate)) +
-  geom_point(aes(y = WinAverage), colour = "#08519c", show.legend = FALSE) + 
-  geom_point(aes(y = eb_estimate), colour = "#f768a1", show.legend = FALSE) +
+  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate), colour = "black") +
+  geom_point(aes(y = WinAverage), colour = "#4b9ad8", show.legend = FALSE, size = 3) + 
+  geom_point(aes(y = eb_estimate), colour = "#f768a1", show.legend = FALSE, size = 3) +
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35),
+        axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5)) +
+  labs(y = "Win Average", 
+       x = "Opponent Character", 
+       title = "Method of Moments Estimation", 
+       subtitle = "New estimates in pink, old estimates in blue") + 
+  scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
+  coord_flip()
+
+#Cleveland dot plot dark theme
+Hbox.eb %>%
+  ggplot(aes(x = reorder(OpponentCharacter, WinAverage))) + 
+  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate), colour = "#a6a6a6") +
+  geom_point(aes(y = WinAverage), colour = "#4b9ad8", show.legend = FALSE, size = 3) + 
+  geom_point(aes(y = eb_estimate), colour = "#f768a1", show.legend = FALSE, size = 3) +
+  theme_needle_dark() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35),
+        axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5)) +
   labs(y = "Win Average", 
        x = "Opponent Character", 
        title = "Method of Moments Estimation", 
@@ -268,14 +371,17 @@ Hbox.eb %>%
   scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
   coord_flip()
 ```
-
+<picture>
+    <img id="moon" srcset="index_files/figure-html/Results-1.png"/>
+    <img id="sun" srcset="index_files/figure-html/Results-2.png"/>
+</picture>
 As mentioned before, Hungrybox's win average versus Young Link has increased substantially (0.500 to 0.674). The new estimate for Young Link is now more in line with the estimates of all of Hungrybox's matchups. Conversely, there was only a very small change in Hungrybox's win average estimate for the Fox matchup (0.5823 to 0.5890). The win average estimate for Fox is now lower than any other matchup in the dataset.    
-&nbsp;  
+  
 
 ----
 
 ### Conclusions
-&nbsp;  
+  
 To reiterate, this empirical Bayesian estimation analysis used the distribution of Hungrybox's win averages across all matchups to improve estimates of win averages in each of Hungrybox's individual matchups.  
 
 So, what did we learn? First we learned that sample size and the number of observations is important. We should not make bold conclusions on percentages or proportions that have a small number of underlying observations. That principle should also be applied to this analysis. Due to the nature of high level competitive Melee, only a few matchups made up Hungrybox's win average distribution. This affected the estimates of the alpha and beta parameters of the beta distribution, as well as the resulting estimates for each of Hungrybox's matchups. 
@@ -287,7 +393,7 @@ So, does this mean that players should only play Fox against Hungrybox's Jigglyp
 Recent tournament results suggest otherwise.  
 &nbsp;  
 
-![Shine 2018 Top 8 Bracket | source: smash.gg](/img/SmashggShine2018.png)
+![Shine 2018 Top 8 Bracket | source: smash.gg](/SmashggShine2018.PNG)
 &nbsp;  
 Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox in two best-of-5 tournament matches at Shine 2018. One of those matches was a decisive [3-1 Grand Finals set](https://youtu.be/BGifpkfcvvg){target="_blank"} versus Hungrybox. That feat is compounded by the fact that Zain beat Hungrybox using Marth, a character that historically performs poorly versus Hungrybox’s Jigglypuff. In fact, the last Marth player to beat Hungrybox was [PewPewU in 2015](https://youtu.be/tDxvY_MVctI){target="_blank"}. So, character matchups and their estimates are not everything in Melee and that's just one reason why the competetitive scene can be so exciting to watch.  
 
@@ -301,9 +407,9 @@ All of the code for this post can be found [here](https://github.com/HaydenMacDo
 ----
 
 ### Bonus: Maximum Likelihood Estimation
-&nbsp;  
+  
 In addition to estimating the alpha and beta parameters through the method of moments, we can also use maximum likelihood estimation. Here, I use the `fitdistr()` function from the `MASS` package to do that with one line of code.   
-&nbsp;  
+  
 ```{r Maximum Likelihood Estimation}
 Hbox.est2 <- fitdistr(Hbox$WinAverage,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
 
@@ -341,27 +447,29 @@ sprintf("%.3f", Hbox.est$alpha / (Hbox.est$alpha + Hbox.est$beta))
 &nbsp;  
 And our estimates of win averages?  
 
-```{r, echo = FALSE}
-#Maximum Likelihood Estimation
+```{r bonus, echo = FALSE, include=FALSE}
+#Maximum Likelihood Estimation (light theme)
 Hbox.eb2 %>%
   ggplot(aes(x = reorder(OpponentCharacter, WinAverage))) + 
-  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate2)) +
-  geom_point(aes(y = WinAverage), colour = "#08519c", show.legend = FALSE) + 
-  geom_point(aes(y = eb_estimate2), colour = "#f768a1", show.legend = FALSE) +
+  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate2), colour = "black") +
+  geom_point(aes(y = WinAverage), colour = "#4b9ad8", show.legend = FALSE, size = 3) + 
+  geom_point(aes(y = eb_estimate2), colour = "#f768a1", show.legend = FALSE, size = 3) +
   theme_bw() +
   labs(y = "Win Average", 
        x = "Opponent Character", 
        title = "Maximum Likelihood Estimation", 
        subtitle = "New estimates in pink, old estimates in blue") + 
   scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
-  coord_flip()
+  coord_flip() +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5))
 
-#Previous Analysis: Method of Moments
+#Previous Analysis: Method of Moments (light theme)
 Hbox.eb %>%
   ggplot(aes(x = reorder(OpponentCharacter, WinAverage))) + 
-  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate)) +
-  geom_point(aes(y = WinAverage), colour = "#08519c", show.legend = FALSE) + 
-  geom_point(aes(y = eb_estimate), colour = "#f768a1", show.legend = FALSE) +
+  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate), colour = "black") +
+  geom_point(aes(y = WinAverage), colour = "#4b9ad8", show.legend = FALSE, size = 3) + 
+  geom_point(aes(y = eb_estimate), colour = "#f768a1", show.legend = FALSE, size = 3) +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
   labs(y = "Win Average", 
@@ -369,9 +477,52 @@ Hbox.eb %>%
        title = "Method of Moments Estimation", 
        subtitle = "New estimates in pink, old estimates in blue") + 
   scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
-  coord_flip()
-```
+  coord_flip() +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5))
 
+
+
+#Maximum Likelihood Estimation (dark theme)
+Hbox.eb2 %>%
+  ggplot(aes(x = reorder(OpponentCharacter, WinAverage))) + 
+  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate2), colour = "#a6a6a6") +
+  geom_point(aes(y = WinAverage), colour = "#4b9ad8", show.legend = FALSE, size = 3) + 
+  geom_point(aes(y = eb_estimate2), colour = "#f768a1", show.legend = FALSE, size = 3) +
+  theme_needle_dark() +
+  labs(y = "Win Average", 
+       x = "Opponent Character", 
+       title = "Maximum Likelihood Estimation", 
+       subtitle = "New estimates in pink, old estimates in blue") + 
+  scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
+  coord_flip() +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5))
+
+#Previous Analysis: Method of Moments (dark theme)
+Hbox.eb %>%
+  ggplot(aes(x = reorder(OpponentCharacter, WinAverage))) + 
+  geom_segment(aes(xend = OpponentCharacter, y = WinAverage, yend = eb_estimate), colour = "#a6a6a6") +
+  geom_point(aes(y = WinAverage), colour = "#4b9ad8", show.legend = FALSE, size = 3) + 
+  geom_point(aes(y = eb_estimate), colour = "#f768a1", show.legend = FALSE, size = 3) +
+  theme_needle_dark() +
+  theme(axis.text.x = element_text(angle = 0, hjust = 0.5, vjust = 0.35)) +
+  labs(y = "Win Average", 
+       x = "Opponent Character", 
+       title = "Method of Moments Estimation", 
+       subtitle = "New estimates in pink, old estimates in blue") + 
+  scale_y_continuous(breaks = seq(0.00, 1.00, 0.10)) +
+  coord_flip() +
+  theme(axis.title.x = element_text(vjust = -1),
+        axis.title.y = element_text(vjust = 2.5))
+```
+<picture>
+    <img id="moon" srcset="index_files/figure-html/bonus-1.png"/>
+    <img id="moon" srcset="index_files/figure-html/bonus-2.png"/>
+    <img id="sun" srcset="index_files/figure-html/bonus-3.png"/>
+    <img id="sun" srcset="index_files/figure-html/bonus-4.png"/>
+</picture>
+  
 The data do not change very much! It’s nice that this method also reflects the same conclusions as the previous analysis.
 
 ----

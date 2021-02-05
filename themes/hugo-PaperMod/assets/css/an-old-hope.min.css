@@ -14,13 +14,11 @@
     color: #eb3c54
 }
 
-.hljs-built_in,
 .hljs-builtin-name,
 .hljs-link,
 .hljs-literal,
 .hljs-meta,
 .hljs-number,
-.hljs-params,
 .hljs-type {
     color: #e7ce56
 }
