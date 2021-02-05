@@ -164,6 +164,19 @@ library(dplyr)
 library(ggplot2)
 ```
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggdark)
+
+theme_needle_dark <- function(base_size = 11, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {
+  ggdark::dark_mode(theme_light(base_size, base_family, base_line_size, base_rect_size)) %+replace%
+    theme(plot.background = element_rect(fill = "#1d1e20", colour = "#1d1e20", size = 0),
+          panel.background = element_rect(fill = "#1d1e20", colour = NA),
+          legend.background = element_rect(fill = "#1d1e20", colour = NA),
+          panel.grid.major = element_line(colour = "#474747"),
+          panel.grid.minor = element_line(colour = "#474747"))
+}
+```
+
 ```{r import, message = FALSE, echo = FALSE}
 rdata <- read_csv("thesisexp1.csv")
 rdata$Pattern <- factor(rdata$Pattern)
@@ -182,7 +195,7 @@ rdata3 <- rdata %>%
 ```
 
 ```{r render, echo=FALSE, results=FALSE, warning=FALSE, message=FALSE}
-png(filename = "index_files/figures-html/revamp.png",
+png(filename = "index_files/figures-html/revamp-1.png",
     type = "cairo", 
     units = "in", 
     width = 8,
@@ -218,11 +231,50 @@ rdata3 %>%
     geom_text(mapping = aes(x = 12, y = 43, label = "Chance accuracy (41%)"), colour = "black") +
     guides(colour = "none") +
     theme_bw()
+dev.off()
 
+png(filename = "index_files/figures-html/revamp-2.png",
+    type = "cairo", 
+    units = "in", 
+    width = 8,
+    height = 8,
+    pointsize = 8, 
+    res = 300)
+rdata3 %>%
+    ggplot(aes(x = RI, 
+               y = mean2, 
+               group = Pattern, 
+               color = Pattern)) +
+    geom_point(size = 3) +
+    geom_line(size = 1) +
+    geom_errorbar(ymin = rdata3$mean2 - rdata3$stderror, 
+                  ymax = rdata3$mean2 + rdata3$stderror, 
+                  width = 0.05,
+                  size = 1) +
+    geom_text(data = rdata3[rdata3$RI == "240",], 
+              aes(label = Pattern), 
+              hjust = c(1.25, -0.3, -0.3)) +
+    geom_jitter(data = rdata2, 
+                aes(y = mean1),
+                size = 2,
+                alpha = 0.45,
+                width = 0,
+                height = 2) +
+    scale_x_log10() +
+    scale_y_continuous(limits = c(0, 100)) +
+    scale_color_manual(values = c("#9bbb59", "#c0504d", "#4f81bd")) +
+    labs(x = "Retention Interval (minutes, log scale)", y = "Percent Correct (%)") +
+    geom_line(y = 41, colour = "#a6a6a6", linetype = 2) +
+    geom_text(mapping = aes(x = 12, y = 43, label = "Chance accuracy (41%)"), colour = "#a6a6a6") +
+    guides(colour = "none") +
+    theme_needle_dark()
 dev.off()
 ```
-
-![Figure 4. Spatial working memory accuracy in each arm pattern across increasing levels of RI. Spatial working memory was measured as a percentage of correct choices within the first four choices of the test phase. Errors bars represent standard error. Jittered, translucent data points represent individual observations at each RI. Chance accuracy (41%) is denoted by the dotted line.](index_files/figures-html/revamp.png)  
+<picture>
+    <img id="moon" srcset="index_files/figures-html/revamp-1.png"/>
+    <img id="sun" srcset="index_files/figures-html/revamp-2.png"/>
+</picture>
+<div class="figure"><p class = "caption">Figure 4. Spatial working memory accuracy in each arm pattern across increasing levels of RI. Spatial working memory was measured as a percentage of correct choices within the first four choices of the test phase. Errors bars represent standard error. Jittered, translucent data points represent individual observations at each RI. Chance accuracy (41%) is denoted by the dotted line.</p></div> 
 
 In this new version of the graphic, many of the original issues have been addressed.  
   
@@ -261,6 +313,6 @@ Also, go to Boston. It is easily my favourite American city so far.
 ![](index_files/figures-html/bostonsky.JPG#center){width='50%'}
 
 
-As always, the code for this post is available [here](https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2018-10-15-boston-2018-tufte-and-viz.Rmd){target="_blank"}.
+As always, the code for this post is available [here](https://github.com/HaydenMacDonald/nith/blob/main/content/post/tufte-and-viz/index.Rmd){target="_blank"}.
 &nbsp;  
   

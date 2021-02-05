@@ -93,7 +93,6 @@ library(MASS)
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(ggdark)
-library(Cairo)
 
 theme_needle_dark <- function(base_size = 11, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {
   ggdark::dark_mode(theme_light(base_size, base_family, base_line_size, base_rect_size)) %+replace%
@@ -401,7 +400,7 @@ I am very glad to publish this first post on my blog, especially since I have be
 
 If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in competitive Melee, you can watch [“The Smash Brothers” documentary](https://youtu.be/jX9hbbA-WP4){target="_blank"}, search through [competitive Melee VODs](https://vods.co/melee){target="_blank"}, or watch livestreams of tournaments on Twitch. You can use ["When's Melee?"](http://whensmelee.com/){target="_blank"} to find out when those tournaments are scheduled.  
 
-The code for this post can be found [here](https://github.com/HaydenMacDonald/nith/blob/master/content/post/empirical-melee/index.Rmd){target="_blank"}!  
+The code for this post can be found [here](https://github.com/HaydenMacDonald/nith/blob/main/content/post/empirical-melee/index.Rmd){target="_blank"}!  
 &nbsp;  
 
 ----
