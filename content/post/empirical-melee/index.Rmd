@@ -401,7 +401,7 @@ I am very glad to publish this first post on my blog, especially since I have be
 
 If you have any questions or concerns about this blog post, feel free to message me on Twitter or leave a Disqus comment. If you’re interested in competitive Melee, you can watch [“The Smash Brothers” documentary](https://youtu.be/jX9hbbA-WP4){target="_blank"}, search through [competitive Melee VODs](https://vods.co/melee){target="_blank"}, or watch livestreams of tournaments on Twitch. You can use ["When's Melee?"](http://whensmelee.com/){target="_blank"} to find out when those tournaments are scheduled.  
 
-All of the code for this post can be found [here](https://github.com/HaydenMacDonald/needle-in-the-hay/blob/master/content/post/2018-08-31-empirical-bayes-estimation-of-hungrybox-s-2017-character-matchups.Rmd){target="_blank"}.  
+The code for this post can be found [here](https://github.com/HaydenMacDonald/nith/blob/master/content/post/empirical-melee/index.Rmd){target="_blank"}!  
 &nbsp;  
 
 ----

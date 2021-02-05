@@ -48,6 +48,7 @@ comments = false
 hidemeta = false
 showtoc = false
 tocopen = false
+math = true
 
   [params.homeInfoParams]
   Title = "Hi I'm Hayden"
