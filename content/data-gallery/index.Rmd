@@ -6,10 +6,17 @@ comments: false
 
 ### Line and bump charts from <a href="/introducing-squashinformr/" target="_blank">'Introducing squashinformr'</a>
 &nbsp;  
-![line-chart](/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-17-1.png)
+
+<picture>
+<img id="moon" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/womens-rankings-light-theme.png"/>
+<img id="sun" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/womens-rankings-dark-theme.png"/>
+</picture>
 &nbsp;  
   
-![dot-plot](/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-18-1.png)  
+<picture>
+<img id="moon" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/womens-rankings-last-year-light-theme.png"/>
+<img id="sun" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/womens-rankings-last-year-dark-theme.png"/>
+</picture>
 &nbsp;  
   
 ----
@@ -17,7 +24,13 @@ comments: false
 
 ### Cleveland Dot Plots from <a href="/introducing-squashinformr/" target="_blank">'Introducing squashinformr'</a>
 &nbsp;  
-![cleveland-dot-plot](/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-20-1.png)
+<picture>
+<img id="moon" srcset="../post/introducing-squashinformr/index_files/figure-html/unnamed-chunk-20-1.png"/>
+<img id="sun" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/toc2020-1-dark-theme.png"/>
+</picture>
 &nbsp;  
   
-![cleveland-dot-plot-top-8](/post/2020-04-15-introducing-squashinformr-politely-web-scrape-data-from-squashinfo-in-r_files/figure-html/unnamed-chunk-21-1.png)
+<picture>
+<img id="moon" srcset="../post/introducing-squashinformr/index_files/figure-html/unnamed-chunk-21-1.png"/>
+<img id="sun" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/toc2020-2-dark-theme.png"/>
+</picture>

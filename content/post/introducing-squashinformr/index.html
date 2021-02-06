@@ -104,7 +104,11 @@ Use <code>get_players()</code> to extract biographical information on players cu
 <p> <br />
 If you’re familiar with squash, you might be under the impression that players that are younger, taller, or lighter on their feet might have competitive advantages.<br />
  <br />
-<img src="index_files/figure-html/unnamed-chunk-6-1.png" width="2400" /></p>
+<picture>
+<img id="moon" srcset="index_files/figure-html/unnamed-chunk-6-1.png"/>
+<img id="sun" srcset="index_files/figure-html/darktheme/top25mendarktheme.PNG"/>
+</picture>
+</p>
 <p>The data returned from SquashInfo seem to imply that this is not the case! Age, height, weight, and BMI do not seem to have any clear relationship with PSA rankings. There are many factors that contribute to a player’s success, including endurance, positioning, accuracy, and play-style.<br />
  </p>
 <div id="recent-match-data" class="section level3">
@@ -127,15 +131,23 @@ If you’re familiar with squash, you might be under the impression that players
 ## # ... with 61 more rows, and 3 more variables: event &lt;chr&gt;, country &lt;chr&gt;,
 ## #   psa &lt;chr&gt;</code></pre>
 <p> <br />
-<img src="index_files/figure-html/unnamed-chunk-8-1.png" width="2400" /></p>
+<picture>
+<img id="moon" srcset="index_files/figure-html/unnamed-chunk-8-1.png"/>
+<img id="sun" srcset="index_files/figure-html/darktheme/welilydarktheme.png"/>
+</picture></p>
 <p>El Welily’s 2019-2020 match data exemplify her general dominance of women’s competitons. She has a 5.45 win/loss ratio across the tournaments she participated in and 65% of her match wins are 3-0s. Even when she does lose a match, she does not make it easy for her opponents. Her median match times in losses are longer regardless of the number of games played. Although, the sample size is low for El Welily’s losses.<br />
  <br />
 <img src="index_files/figure-html/unnamed-chunk-9-1.png" width="2400" /></p>
+<p id="sun" class="caption" style="font-size: 12px !important;">Apologies to those using dark theme! The data above are not available anymore, so I could not reproduce this graphic with a dark theme :( </p></p>
 <p>Given El Welily’s general dominance, how does she play versus the current #2, Nouran Gohar? We can use <code>get_matchup()</code> to get a quantitative take on their head-to-head performance.
 </p>
 <pre class="r"><code>welily_v_gohar &lt;- get_matchup(&quot;Raneem El Welily&quot;, &quot;Nouran Gohar&quot;, category = &quot;womens&quot;)</code></pre>
 <p> <br />
-<img src="index_files/figure-html/unnamed-chunk-11-1.png" width="2400" /></p>
+<picture>
+<img id="moon" srcset="index_files/figure-html/unnamed-chunk-11-1.png"/>
+<img id="sun" srcset="index_files/figure-html/darktheme/welily-v-gohar-dark-theme.png"/>
+</picture>
+</p>
 <p>El Welily’s currently holds a lead on Gohar by five matches since Janary 1, 2019 and a majority of her wins over Gohar have been decisive (3-1 or 3-0).<br />
  <br />
 <style>html {
@@ -1534,16 +1546,23 @@ PSA Rankings are the definitive international ranking that decide which players 
  </p>
 <pre class="r"><code>ph &lt;- get_player_rankings_history(rank = 1:4, category = &quot;womens&quot;)</code></pre>
 <p> <br />
-<img src="index_files/figure-html/unnamed-chunk-17-1.png" width="2400" />
+<picture>
+<img id="moon" srcset="index_files/figure-html/darktheme/womens-rankings-light-theme.png"/>
+<img id="sun" srcset="index_files/figure-html/darktheme/womens-rankings-dark-theme.png"/>
+</picture>
  <br />
 This is excellent data to use when discussing the story-lines of the sport. In this example, the current top 4 women’s players all began their careers before 2012. Since the end of 2014, they have occupied the top 20 rankings. We can see that Nouran Gohar had a meteoric rise through the rankings after her first PSA ranking in January 2011. The following graphic shows the last year of these players’ ranking histories.<br />
  </p>
 <div class="figure"><span id="fig:unnamed-chunk-18"></span>
-<img src="index_files/figure-html/unnamed-chunk-18-1.png" alt="Shoutout to the ggbump package!" width="2400" />
+<picture>
+<img id="moon" srcset="index_files/figure-html/darktheme/womens-rankings-last-year-light-theme.png" alt="Shoutout to the ggbump package!"/>
+<img id="sun" srcset="index_files/figure-html/darktheme/womens-rankings-last-year-dark-theme.png" alt="Shoutout to the ggbump package!"/>
+</picture>
 <p class="caption">
-Figure 1: Shoutout to the ggbump package!
+Shoutout to the <code>ggbump</code> package!
 </p>
 </div>
+<br>
 <p>How will these rankings shift over the next couple of years?<br />
  </p>
 </div>
@@ -1573,9 +1592,19 @@ Figure 1: Shoutout to the ggbump package!
 ## #   player_2_seed &lt;dbl&gt;, player_1_nationality &lt;chr&gt;, player_2_nationality &lt;chr&gt;</code></pre>
 <p> <br />
 Let’s compare the consistency of a player’s performance in the men’s tournament. We can ask, by what point margin did players win or lose on average throughout this tournament?</p>
-<p><img src="index_files/figure-html/unnamed-chunk-20-1.png" width="2400" /></p><br>
+<p>
+<picture>
+<img id="moon" srcset="index_files/figure-html/unnamed-chunk-20-1.png"/>
+<img id="sun" srcset="index_files/figure-html/darktheme/toc2020-1-dark-theme.png"/>
+</picture>
+</p><br>
 <p>If we only look at the quarter-finalists, we can see that most were able to defeat their opponents with a comfortable lead of 4 or 5 points.</p>
-<p><img src="index_files/figure-html/unnamed-chunk-21-1.png" width="2400" /></p><br>
+<p>
+<picture>
+<img id="moon" srcset="index_files/figure-html/unnamed-chunk-21-1.png"/>
+<img id="sun" srcset="index_files/figure-html/darktheme/toc2020-2-dark-theme.png"/>
+</picture>
+</p><br>
 <p>The averages for Karim Abdel Gawad, Simon Rösner, and Paul Coll are particularly high. This reflects how they handedly defeated many of their opponents up to the third round of the tournament.</p>
 <p>Conversely, two players stand out from a “defensive” perspective. Simon Rösner only lost 3 games, all by a 2 or 3 point margin, during a game 5 defeat to Karim Abdel Gawad. Meanwhile, Mohamed Elshorbagy, the eventual champion, lost only one game. Tarek Momen took a game off of Elshorbagy in the final match, but only by a margin of 2 points. Elshorbagy certainly came to play in this tournament!<br />
  </p>
