@@ -6,7 +6,7 @@ output:
   html_document: default
   pdf_document: default
 images:
-  - ./post/tufte-and-viz/index_files/figures-html/bostonsky.JPG
+  - ./bostonsky.JPG
 tags: 
 - data visualization
 - review
@@ -312,7 +312,7 @@ Tufte's course met my expectations because its content directly addressed what I
 Also, go to Boston. It is easily my favourite American city so far.  
 &nbsp;  
 
-![](index_files/figures-html/bostonsky.JPG#center){width='50%'}
+![](/bostonsky.JPG#center){width='50%'}
 
 
 As always, the code for this post is available [here](https://github.com/HaydenMacDonald/nith/blob/main/content/post/tufte-and-viz/index.Rmd){target="_blank"}.
