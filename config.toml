@@ -79,10 +79,10 @@ math = true
   url = "https://twitter.com/HYDNMCDNLD"
 
   [params.assets]
-  favicon = "/favicon.ico"
-  favicon16x16 = "/favicon-16x16.png"
-  favicon32x32 = "/favicon-32x32.png"
-  apple_touch_icon = "/apple-touch-icon.png"
+  favicon = "/themes/hugo-PaperMod/static/favicon.ico"
+  favicon16x16 = "/themes/hugo-PaperMod/static/favicon-16x16.png"
+  favicon32x32 = "/themes/hugo-PaperMod/static/favicon-32x32.png"
+  apple_touch_icon = "/themes/hugo-PaperMod/static/apple-touch-icon.png"
   disableHLJS = false
 
   [params.label]
