@@ -49,7 +49,6 @@ hidemeta = false
 showtoc = false
 tocopen = false
 math = true
-analytics.google.SiteVerificationTag = "UA-125960941-1"
 
   [params.homeInfoParams]
   Title = "Hi I'm Hayden"
@@ -91,6 +90,10 @@ analytics.google.SiteVerificationTag = "UA-125960941-1"
   icon = "/apple-touch-icon-2.png"
   iconDark = "/apple-touch-icon-dark.png"
   iconHeight = 35
+  iconWidth = 40
+
+  [analytics.google]
+  SiteVerificationTag = "UA-125960941-1"
 
   [params.fuseOpts]
   isCaseSensitive = false
