@@ -1,4 +1,4 @@
-# needle-in-the-hay <img src="/apple-touch-icon-2.png" height=133 weight=200 align="right" />
+# needle-in-the-hay <img src="themes/hugo-PaperMod/static/apple-touch-icon-2.png" height=133 weight=200 align="right" />
 
 Repository for my analytics blog, <a href="https://needleinthehay.ca/">Needle in the Hay</a>.
 
