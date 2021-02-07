@@ -47,7 +47,6 @@ div ul li, div ol li {
 }
 
 pre {
-  border: 1px solid #ddd;
   padding: 1em;
   overflow-x: auto;
 }
