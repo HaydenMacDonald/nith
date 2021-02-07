@@ -4,6 +4,8 @@ author: "Hayden MacDonald"
 date: '2019-09-08'
 output: html_document
 ShowToc: true
+images:
+  - ./voices_photo.jpg
 tags: 
 - data visualization
 - data joins
