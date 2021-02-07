@@ -92,7 +92,7 @@ math = true
   iconHeight = 35
   iconWidth = 40
 
-  [analytics.google]
+  [params.analytics.google]
   SiteVerificationTag = "UA-125960941-1"
 
   [params.fuseOpts]
