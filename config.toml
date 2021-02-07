@@ -49,6 +49,7 @@ hidemeta = false
 showtoc = false
 tocopen = false
 math = true
+analytics.google.SiteVerificationTag = "UA-125960941-1"
 
   [params.homeInfoParams]
   Title = "Hi I'm Hayden"
