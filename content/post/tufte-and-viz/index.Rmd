@@ -6,7 +6,7 @@ output:
   html_document: default
   pdf_document: default
 images:
-  - ./content/post/tufte-and-viz/index_files/figures-html/bostonsky.JPG
+  - ./index_files/figures-html/bostonsky.JPG
 tags: 
 - data visualization
 - review
