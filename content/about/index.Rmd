@@ -7,11 +7,40 @@ hidemeta: true
 
 My name is Hayden MacDonald and I am a Canadian-British data analyst.  
 
-I hold a Master of Science in Management &#8211; Business Analytics from Ivey Business School, Western University. For a full list of my credentials, see <a href="/cv.html" target="_blank">my resume</a>.  
+I hold a Master of Science in Management &#8211; Business Analytics from Ivey Business School, Western University. For a full list of my credentials, see <a href="/cv.pdf" target="_blank">my resume</a>.  
 
-My interests include technology, research, statistics, A/B testing, data visualization, and product analytics. In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.  
+My professional interests include technology, research, statistics, A/B testing, data visualization, and product analytics. In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.  
+&nbsp;  
 
--------
+### Why is your blog called "Needle in the Hay"?
+  
+I chose <a href="https://dictionary.cambridge.org/dictionary/english/a-needle-in-a-haystack" target="_blank">"Needle in the Hay"</a> because it is an analogy for the diligent search for the right questions, among all *possible* questions.  
+
+My career mission is to use data analytics to sift through the "hay" in search of the "needle" when addressing new world business problems.  
+&nbsp;  
+ 
+### What should I expect to see on this blog?  
+  
+My goal for this blog is to create quality content that documents my professional growth in programming and analytics. My posts will contain educational content, but may also contain personal reflections or opinions. Most of my posts will use the `R` programming language but, as I continue learning, I plan to include `Python` and `SQL` as well.  
+&nbsp;  
+
+----
+
+### Open Source
+
+#### Author
+
+- <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">`squashinformr`</a>
+- <a href="/post/hmdrmd/" target="_blank">`hmdrmd`</a>
+
+#### Contributor
+
+- <a href="https://github.com/davidsjoberg/ggbump" target="_blank">`ggbump`</a>
+- <a href="https://github.com/johncassil/stringr.plus" target="_blank">`stringr.plus`</a>
+- <a href="https://github.com/HaydenMacDonald/lubridateExtras" target="_blank">`lubridateExtras`</a>
+- <a href="https://github.com/philip-khor/bnmr" target="_blank">`bnmr`</a>
+
+----
 
 ### Publications
 **MacDonald, Hayden**, Lo, G. K. H., Macpherson, K., & Roberts, W.A. (2020). An isolation effect in rat spatial memory. *JEP: Anim Learn and Cogn*. doi: <a href="https://psycnet.apa.org/record/2019-72853-001" target="_blank">10.1037/xan0000231</a>.
@@ -34,25 +63,6 @@ Roberts, W.A., Guitar, N.A., Marsh, H.L., & **MacDonald, H.** (2016). Memory sys
 **MacDonald, H.**, & Roberts, W. A. (2018, April). Spatial memory for isolated arm locations on the radial maze. Five minute talk presented at the International Conference On Comparative Cognition, Melbourne, Florida.
 
 **MacDonald, H.**, & Roberts, W. A. (2017, April). Time versus context in a visual mid-session reversal task. Poster presented at the International Conference On Comparative Cognition, Melbourne, Florida.  
-
-----
-
-### Technical Skills  
-
-- R
-- SQL
-- Excel
-- Git
-- Tableau
-- Python
-- JavaScript
-
-----
-
-### Open Source
-
-- <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">`squashinformr`</a>
-- <a href="/post/hmdrmd/" target="_blank">`hmdrmd`</a>
 
 ----
 &nbsp;  
