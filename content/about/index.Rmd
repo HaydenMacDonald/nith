@@ -7,6 +7,8 @@ hidemeta: true
 
 My name is Hayden MacDonald and I am a Canadian-British data analyst.  
 
+This is my data blog. To read through previous posts, see the <a href="/archives">Blog section</a>. 
+
 I hold a Master of Science in Management &#8211; Business Analytics from Ivey Business School, Western University. For a full list of my credentials, see <a href="/cv.pdf" target="_blank">my resume</a>.  
 
 My professional interests include technology, research, statistics, A/B testing, data visualization, and product analytics. In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.  
