@@ -1,0 +1,86 @@
+---
+title: "Refactoring squashinformr 🛠"
+author: "Hayden MacDonald"
+date: "2021-02-10"
+output:
+  blogdown::html_page:
+    toc: false
+slug: refactoring-squashinformr
+image_preview: ""
+tags: 
+- R
+- code
+- best-practices
+description: "Using software development best practices to improve R package maintainability."
+---
+
+
+
+<p>In the early days of the pandemic, I wrote <a href="/post/introducing-squashinformr" target="_blank"><code>squashinformr</code></a>, an R package for web scraping professional squash data. I’m quite proud of the package, as it was my first real effort in creating open source. But as a novice in software development, I committed many cardinal programming sins when I wrote the initial version.</p>
+<p>When I published the first iteration on CRAN, my approach to writing code was very ‘script-like’. Code for my analyses were kept in single Rmarkdown files that I would run from top to bottom. It’s clear looking at old <code>squashinformr</code> code that I expected functions to behave the same way. That is, I wrote the functions as if they were individual scripts that had no common behaviour or tasks. In reality, some functions contained identical code except for a few substituted variables. In short, the code was a mess and vulnerable to bugs.</p>
+<p>Since writing the package, I’ve had the opportunity to internalize software development best practices with the help of a mentor at work. Feeling more confident about my ability to write stable code, I refactored <code>squashinformr</code> earlier this year. I’d like to break down examples of where I applied these best practices as if I were speaking to my past self. If you haven’t heard of these rules, I would recommend you can apply some of them in your work. That way, you or someone else does not have to rewrite your code in the future 😄
+ </p>
+<div id="beware-copy-paste" class="section level2">
+<h2>Beware copy + paste</h2>
+<p>This is a tip that you might have heard before and, like me, willfully ignored out of convenience. Copying and pasting code is an easy solution in the moment, but also a sure way to accrue <a href="https://en.wikipedia.org/wiki/Technical_debt" target="_blank">technical debt</a>. This is because it is an easy way to implement the logic you need, but it comes with a catch: it potentially doubles the length of your code. I made this mistake when writing <code>squashinformr</code> many times over by doing something like this:</p>
+<pre class="r"><code>get_some_data &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;, &quot;both&quot;)) {
+
+  if (category == &quot;mens&quot;) {
+    ## [Code to get men&#39;s data]
+    ## [Data cleaning]
+  }
+
+  else if (category == &quot;womens&quot;) {
+    ## [ Code to get women&#39;s data]
+    ## [Data cleaning]
+  }
+
+  ## [Common data operations]
+  return(result)
+
+}</code></pre>
+<p> <br />
+The consequence of lengthening your code is explained eloquently by <a href="https://books.google.co.uk/books?id=Pd-z64SJRBAC&amp;newbks=0&amp;hl=en&amp;source=newbks_fb&amp;redir_esc=y" target="_blank">Andrew Tannenbaum</a>:</p>
+<blockquote>
+<p>In addition, a substantial number of the problems caused by buggy software, which occurs because vendors keep adding more and more features to their programs, which inevitably means more code and thus more bugs.</p>
+</blockquote>
+<p>My pseudo-code function above is just waiting for bugs. The code that retrieved the men’s data was nearly identical to the code that retrieved the women’s data. So if I wanted to introduce a change to that code or a bug stopped the function from working properly, I would have to change the function in up to four separate places to ensure consistent results. It’s a similar story when it comes to code commenting. Not only would I have to rewrite the comments for the code I copy+pasted but I would also have to edit multiple lines if I wanted to rewrite a shared comment.</p>
+<p>This is why it’s in our best interest to avoid copying and pasting code. So what is the alternative strategy to copying and pasting? Writing functions. When you notice that you are about to write code that repeats the same logic or task as other code you’ve written, it’s time to consider whether you should start writing a function to contain that logic. Hadley Wickham wrote a good rule of thumb for this in his <a href="https://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science book</a>:</p>
+<blockquote>
+<p>You should consider writing a function whenever you’ve copied and pasted a block of code more than twice (i.e. you now have three copies of the same code)</p>
+</blockquote>
+<p>While refactoring <code>squashinformr</code> I wrote new helper functions that achieved subtasks within larger functions that my package’s users would eventually use in their work. The result looks something like this:</p>
+<pre class="r"><code>get_some_data &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;, &quot;both&quot;)) {
+
+  if (category == &quot;mens&quot;) {
+    result &lt;- helper_function(category = category)
+  }
+
+  else if (category == &quot;womens&quot;) {
+    result &lt;- helper_function(category = category)
+  }
+
+  ## [Common data operations]
+  return(result)
+
+}
+
+
+
+helper_function &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;, &quot;both&quot;)) {
+
+  ## [Code to get data, given category]
+  ## [Data cleaning]
+  return(data)
+
+}</code></pre>
+<p> <br />
+The code that gets the data is now abstracted away from the main function. The result is succinct code that achieves the desired result without accruing technical debt.</p>
+<p>By avoiding copying and pasting, we can make our analyses and software more robust and maintainable for the future.</p>
+</div>
+<div id="determine-requirements-by-drawing-a-diagram" class="section level2">
+<h2>Determine requirements by drawing a diagram</h2>
+</div>
+<div id="continuous-testing" class="section level2">
+<h2>Continuous testing</h2>
+</div>
