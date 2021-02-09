@@ -1,0 +1,108 @@
+theme = "hugo-PaperMod"
+baseURL = "https://needleinthehay.ca/"
+languageCode = "en-us"
+title = "Needle in the Hay"
+
+[[menu.main]]
+identifier = "archives"
+name = "Blog"
+url = "/archives/"
+weight = 10
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 20
+
+[[menu.main]]
+identifier = "resume"
+name = "Resume"
+url = "/cv.pdf"
+weight = 30
+
+[[menu.main]]
+identifier = "data-gallery"
+name = "Data Gallery"
+url = "/data-gallery/"
+weight = 40
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 50
+
+[params]
+env = "production"
+title = "NeedleInTheHay"
+description = "A Data Blog"
+author = "Hayden MacDonald"
+images = [ "/hay.jpg" ]
+defaultTheme = "auto"
+disableThemeToggle = false
+ShowReadingTime = true
+ShowShareButtons = true
+disableSpecial1stPost = false
+comments = false
+hidemeta = false
+showtoc = false
+tocopen = false
+math = true
+
+  [params.homeInfoParams]
+  Title = "Hi I'm Hayden"
+  Content = "This is my data analytics blog!"
+
+  [params.profileMode]
+  enabled = true
+  title = "Hayden MacDonald"
+  imageUrl = "/headshotbw.jpg"
+  imageTitle = "That's me!"
+  imageWidth = 120
+  imageHeight = 120
+
+  [[params.socialIcons]]
+  name = "email"
+  url = "mailto:hmd@needleinthehay.ca"
+
+  [[params.socialIcons]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/hayden-macdonald/"
+
+  [[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/HaydenMacDonald"
+
+  [[params.socialIcons]]
+  name = "twitter"
+  url = "https://twitter.com/HYDNMCDNLD"
+
+  [params.assets]
+  favicon = "/favicon.ico"
+  favicon16x16 = "/favicon-16x16.png"
+  favicon32x32 = "/favicon-32x32.png"
+  apple_touch_icon = "/apple-touch-icon.png"
+  disableHLJS = false
+
+  [params.label]
+  text = "Needle in the Hay"
+  icon = "/apple-touch-icon-2.png"
+  iconDark = "/apple-touch-icon-dark.png"
+  iconHeight = 35
+  iconWidth = 40
+
+  [params.analytics.google]
+  SiteVerificationTag = "UA-125960941-1"
+
+  [params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1_000
+  threshold = 0.4
+  minMatchCharLength = 0
+  keys = [ "title", "permalink", "summary", "content" ]
+
+[outputs]
+home = [ "HTML", "RSS", "JSON" ]

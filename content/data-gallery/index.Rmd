@@ -1,0 +1,36 @@
+---
+title: Data Gallery
+subtitle:
+comments: false
+---
+
+### Line and bump charts from <a href="/introducing-squashinformr/" target="_blank">'Introducing squashinformr'</a>
+&nbsp;  
+
+<picture>
+<img id="moon" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/womens-rankings-light-theme.png"/>
+<img id="sun" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/womens-rankings-dark-theme.png"/>
+</picture>
+&nbsp;  
+  
+<picture>
+<img id="moon" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/womens-rankings-last-year-light-theme.png"/>
+<img id="sun" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/womens-rankings-last-year-dark-theme.png"/>
+</picture>
+&nbsp;  
+  
+----
+&nbsp;  
+
+### Cleveland Dot Plots from <a href="/introducing-squashinformr/" target="_blank">'Introducing squashinformr'</a>
+&nbsp;  
+<picture>
+<img id="moon" srcset="../post/introducing-squashinformr/index_files/figure-html/unnamed-chunk-20-1.png"/>
+<img id="sun" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/toc2020-1-dark-theme.png"/>
+</picture>
+&nbsp;  
+  
+<picture>
+<img id="moon" srcset="../post/introducing-squashinformr/index_files/figure-html/unnamed-chunk-21-1.png"/>
+<img id="sun" srcset="../post/introducing-squashinformr/index_files/figure-html/darktheme/toc2020-2-dark-theme.png"/>
+</picture>
