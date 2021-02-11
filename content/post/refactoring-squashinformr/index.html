@@ -16,13 +16,13 @@ description: "Using software development best practices to improve R package mai
 
 
 
-<p>In the early days of the pandemic, I wrote <a href="/post/introducing-squashinformr" target="_blank"><code>squashinformr</code></a>, an R package for web scraping professional squash data. I’m quite proud of the package, as it was my first real effort in creating open source. But as a novice in software development, I committed many cardinal programming sins when I wrote the initial version.</p>
-<p>When I published the first iteration on CRAN, my approach to writing code was very ‘script-like’. Code for my analyses were kept in single Rmarkdown files that I would run from top to bottom. It’s clear looking at old <code>squashinformr</code> code that I expected functions to behave the same way. That is, I wrote the functions as if they were individual scripts that had no common behaviour or tasks. In reality, some functions contained identical code except for a few substituted variables. In short, the code was a mess and vulnerable to bugs.</p>
-<p>Since writing the package, I’ve had the opportunity to internalize software development best practices with the help of a mentor at work. Feeling more confident about my ability to write stable code, I refactored <code>squashinformr</code> earlier this year. I’d like to break down examples of where I applied these best practices as if I were speaking to my past self. If you haven’t heard of these rules, I would recommend you can apply some of them in your work. That way, you or someone else does not have to rewrite your code in the future 😄
+<p>In the early days of the pandemic, I wrote <a href="/post/introducing-squashinformr" target="_blank"><code>squashinformr</code></a>, an R package for web scraping professional squash data. I’m quite proud of the package, as it was my first real effort in creating open source. But when I wrote the initial version, I committed many cardinal programming sins.</p>
+<p>At the time, my approach to writing code was very ‘script-like’. I kept code for my analyses in single Rmarkdown files that I would run from top to bottom. It’s clear looking at old <code>squashinformr</code> code that I expected functions to behave the same way. That is, I wrote the functions as if they were individual scripts that had no common behaviour or tasks. In reality, some functions contained identical code except for a few substituted variables. In short, the code was a mess and vulnerable to bugs.</p>
+<p>Since then, I’ve learned software development best practices with the help of a mentor at work. Feeling more confident about my ability to write stable code, I refactored <code>squashinformr</code> earlier this year. I’d like to break down examples of where I applied these best practices as if I were speaking to my past self. If you haven’t heard of these rules, I recommend you apply some of them in your work. That way, you or someone else does not have to rewrite your code in the future 😄
  </p>
 <div id="beware-copy-paste" class="section level2">
 <h2>Beware copy + paste</h2>
-<p>This is a tip that you might have heard before and, like me, willfully ignored out of convenience. Copying and pasting code is an easy solution in the moment, but also a sure way to accrue <a href="https://en.wikipedia.org/wiki/Technical_debt" target="_blank">technical debt</a>. This is because it is an easy way to implement the logic you need, but it comes with a catch: it potentially doubles the length of your code. I made this mistake when writing <code>squashinformr</code> many times over by doing something like this:</p>
+<p>This is a tip that you might have heard before and, like me, ignored out of convenience. Copying and pasting code is an quick and easy solution in the moment. Unfortunately, it is also a sure way to accrue <a href="https://en.wikipedia.org/wiki/Technical_debt" target="_blank">technical debt</a>. It is an easy way to implement the logic you need, but it comes with a catch: it (at least) doubles the length of your code. I made this mistake when writing <code>squashinformr</code> many times over by doing something like this:</p>
 <pre class="r"><code>get_some_data &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;, &quot;both&quot;)) {
 
   if (category == &quot;mens&quot;) {
@@ -44,12 +44,12 @@ The consequence of lengthening your code is explained eloquently by <a href="htt
 <blockquote>
 <p>In addition, a substantial number of the problems caused by buggy software, which occurs because vendors keep adding more and more features to their programs, which inevitably means more code and thus more bugs.</p>
 </blockquote>
-<p>My pseudo-code function above is just waiting for bugs. The code that retrieved the men’s data was nearly identical to the code that retrieved the women’s data. So if I wanted to introduce a change to that code or a bug stopped the function from working properly, I would have to change the function in up to four separate places to ensure consistent results. It’s a similar story when it comes to code commenting. Not only would I have to rewrite the comments for the code I copy+pasted but I would also have to edit multiple lines if I wanted to rewrite a shared comment.</p>
-<p>This is why it’s in our best interest to avoid copying and pasting code. So what is the alternative strategy to copying and pasting? Writing functions. When you notice that you are about to write code that repeats the same logic or task as other code you’ve written, it’s time to consider whether you should start writing a function to contain that logic. Hadley Wickham wrote a good rule of thumb for this in his <a href="https://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science book</a>:</p>
+<p>My pseudo-code function above is waiting for a bug to ruin it. The code that retrieved the men’s data was nearly identical to the code that retrieved the women’s data. If I wanted to introduce a change or a bug stopped the function from working, I would have to rewrite code in up to four separate places to ensure consistent results. It’s a similar story when it comes to code commenting. I would have to rewrite the comments in up to four places if they were common between each workflow. This is why it’s in our best interest to avoid copying and pasting code. Not only does it make code more vulnerable, but it also creates more work for you in the future.</p>
+<p>So what is the alternative strategy to copying and pasting? Writing functions. When you are about to write code that repeats the same logic as other code you’ve written, it’s time to consider whether you should start writing a function. Hadley Wickham wrote a good rule of thumb for this in his <a href="https://r4ds.had.co.nz/functions.html" target="_blank">R for Data Science book</a>:</p>
 <blockquote>
-<p>You should consider writing a function whenever you’ve copied and pasted a block of code more than twice (i.e. you now have three copies of the same code)</p>
+<p>You should consider writing a function whenever you’ve copied and pasted a block of code more than twice (i.e. you now have three copies of the same code).</p>
 </blockquote>
-<p>While refactoring <code>squashinformr</code> I wrote new helper functions that achieved subtasks within larger functions that my package’s users would eventually use in their work. The result looks something like this:</p>
+<p>While refactoring <code>squashinformr</code>, I wrote new helper functions that achieved subtasks within the package’s main functions. The result looks something like this:</p>
 <pre class="r"><code>get_some_data &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;, &quot;both&quot;)) {
 
   if (category == &quot;mens&quot;) {
@@ -66,7 +66,6 @@ The consequence of lengthening your code is explained eloquently by <a href="htt
 }
 
 
-
 helper_function &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;, &quot;both&quot;)) {
 
   ## [Code to get data, given category]
@@ -76,11 +75,25 @@ helper_function &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;
 }</code></pre>
 <p> <br />
 The code that gets the data is now abstracted away from the main function. The result is succinct code that achieves the desired result without accruing technical debt.</p>
-<p>By avoiding copying and pasting, we can make our analyses and software more robust and maintainable for the future.</p>
+<p>By avoiding copying and pasting, we can make our code more robust and maintainable for the future.</p>
 </div>
 <div id="determine-requirements-by-drawing-a-diagram" class="section level2">
 <h2>Determine requirements by drawing a diagram</h2>
+<p>It’s easy to get inspired about a project idea and want to dive straight in to making it. This happened to me when I wrote <code>squashinformr</code>. I was excited by the idea of writing an R package and I had already written code that achieved some of the basic functionality. So I just started writing code and putting hours of time into something I had not thought through. To quote Jurassic Park:</p>
+<blockquote>
+<p>Yeah, yeah, but your scientists were so preoccupied with whether or not they could that they didn’t stop to think if they should.</p>
+</blockquote>
+<p>In other words, I started writing code before determining what the end product should be. I didn’t think about how many functions I would be writing or what they should deliver. I didn’t consider how those functions could share subtasks so I didn’t write helper functions. I ended up wasting a lot of time because of this mistake. To be honest, if I had determined the package’s <a href="https://en.wikipedia.org/wiki/Software_requirements" target="_blank">requirements</a> beforehand, I wouldn’t have written this blog post.</p>
+<p>Instead, I could have achieved a high-level vision of the package by drawing a diagram. Using three <code>squashinformr</code> functions as an example, the diagram could look like this:<br />
+ </p>
+<p><img src="/squashinformr-diagram-2.png" alt="Requirements Diagram Example" /></p>
+<p>By creating this diagram, I’ve forced myself to think about how the final product works. I’m forced to think about the package functions as a whole. I have to consider the steps that each function takes towards its desired behaviour. And I also have to think about which functions share logic and which logic is unique to them (e.g. data cleaning). This exercise is informative even if you are the one who came up with the project idea. It helps you determine the scope of the project and leads you toward a refined vision of what you’re about to do.</p>
+<p>Developments teams will have their own processes for determining requirements, which may be too formal for some personal projects. That’s why I recommend this method. You can decide how formal or detailed you want to be so you don’t exhaust your inspiration in the planning stage. At the same time, you don’t dive in and hope for the best. At the very least, you have an image you can reference to keep your on track with the high-level purpose of your project.</p>
 </div>
 <div id="continuous-testing" class="section level2">
 <h2>Continuous testing</h2>
+<p>One thing I did well in the first version of <code>squasinformr</code> was <a href="https://r-pkgs.org/tests.html" target="_blank">testing</a>. I wrote two main types of tests for every function . Equality tests (i.e. “this function with these inputs should return <strong>exactly</strong> this result”) and input error tests (e.g. “this function with these inputs should return an error”). All credit to the <code>testthat</code> package, which makes it easy for everyone to implement these kinds of tests. The benefit of these tests was that I could run these tests every time I changed something. The results would tell me if a function was behaving as expected or return an error if it wasn’t. So all was good while I developed the package but I forgot to consider something important. How was I going to continue to test these functions after I released <code>squashinformr</code> to the world?</p>
+<p>After releasing a package, you take on responsibility for it. Software packages need maintenance and you are the person people go to if it has issues. So, it’s best that you are the first person to know when something is wrong. This is where continuous testing comes in. Writing software tests is great, but it’s not enough to run them every once in a while. You need to run tests continuously on an interval that make sense. If your software is niche and not integral to other people’s work, you can afford to test less often. If it is integral to other people’s work and a lot of people use it, you should be constantly testing.</p>
+<p>[Clean up this section and make it a smooth introduction to GitHub Actions for testing]
+So how do you actually conduct tests on a regular interval? Additionally, how do you run tests on many operating systems? Thankfully, there is GitHub Actions. If you already host your project on GitHub, the good news is that the R and wider GitHub community have procured thousands of useful tests.</p>
 </div>
