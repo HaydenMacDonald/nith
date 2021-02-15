@@ -67,7 +67,7 @@ get_some_data <- function(category = c("mens", "womens", "both")) {
 }
 ```
 &nbsp;  
-The consequence of lengthening your code is explained eloquently by [Andrew Tannenbaum](https://books.google.co.uk/books?id=Pd-z64SJRBAC&newbks=0&hl=en&source=newbks_fb&redir_esc=y){ target="_blank" }:
+[Andrew Tannenbaum](https://books.google.co.uk/books?id=Pd-z64SJRBAC&newbks=0&hl=en&source=newbks_fb&redir_esc=y){ target="_blank" } explained the consequence of lengthening your code:
 
 >In addition, a substantial number of the problems caused by buggy software, which occurs because vendors keep adding more and more features to their programs, which inevitably means more code and thus more bugs.
 
