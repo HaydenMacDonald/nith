@@ -74,7 +74,7 @@ params:
     iconWidth: 40
   analytics:
     google:
-      SiteVerificationTag: UA-125960941-1
+      SiteVerificationTag: "UA-125960941-1"
   fuseOpts:
     isCaseSensitive: false
     shouldSort: true
