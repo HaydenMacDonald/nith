@@ -2,6 +2,7 @@ theme: hugo-PaperMod
 baseURL: 'https://needleinthehay.ca/'
 languageCode: en-us
 title: Needle in the Hay
+googleAnalytics: UA-125960941-1
 menu:
   main:
     - identifier: archives
