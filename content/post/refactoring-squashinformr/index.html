@@ -37,7 +37,7 @@ description: "Using software development best practices to improve R package mai
 <div id="beware-copy-paste" class="section level2">
 <h2>Beware copy + paste</h2>
 <p>This is a tip that you might have heard before and, like me, ignored out of convenience. Copying and pasting code is a quick and easy solution in the moment. Unfortunately, it is also a sure way to accrue <a href="https://en.wikipedia.org/wiki/Technical_debt" target="_blank">technical debt</a>. It is an easy way to implement the logic you need, but it comes with a catch: it (at least) doubles the length of your code. I made this mistake when writing <code>squashinformr</code> many times over by doing something like this:</p>
-<pre class="r"><code>get_some_data &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;, &quot;both&quot;)) {
+<pre class="r"><code>get_some_data &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;)) {
 
   if (category == &quot;mens&quot;) {
     ## [Code to get men&#39;s data]
@@ -64,7 +64,7 @@ description: "Using software development best practices to improve R package mai
 <p>You should consider writing a function whenever you’ve copied and pasted a block of code more than twice (i.e. you now have three copies of the same code).</p>
 </blockquote>
 <p>While refactoring <code>squashinformr</code>, I wrote new helper functions that achieved subtasks within the package’s main functions. The result looks something like this:</p>
-<pre class="r"><code>get_some_data &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;, &quot;both&quot;)) {
+<pre class="r"><code>get_some_data &lt;- function(category = c(&quot;mens&quot;, &quot;womens&quot;)) {
 
   if (category == &quot;mens&quot;) {
     result &lt;- helper_function(category = category)
@@ -102,6 +102,6 @@ The code that gets the data is now abstracted away from the main function. The r
 </div>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p>These are the three best practices I’ve been able to apply to my open source work with <code>squashinformr</code>. I determined software requirements by drawing high-level diagrams of the finished product. I reduced code redundancy and complexity writing helper functions. Lastly, I integrated continuous testing through GitHub Actions to ensure the package timely maintenance and wide accessibility.</p>
+<p>These are the three best practices I’ve been able to apply to my open source work with <code>squashinformr</code>. I determined software requirements by drawing high-level diagrams of the finished product. I reduced code redundancy and complexity by writing helper functions. Lastly, I integrated continuous testing through GitHub Actions to ensure timely maintenance and wider accessibility.</p>
 <p>After all that, my work is not finished. <code>squashinformr</code> is not perfect, it still needs help! If you are looking to get involved in open source, check out <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">the GitHub repository</a> if this project interests you. Feel free to open an issue or send me an email (<a href="mailto:hmd@needleinthehay.ca" class="email">hmd@needleinthehay.ca</a>) with your idea. Thanks for reading!</p>
 </div>

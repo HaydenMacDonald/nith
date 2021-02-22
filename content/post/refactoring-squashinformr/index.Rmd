@@ -49,7 +49,7 @@ Development teams will have their own processes for determining requirements, wh
 This is a tip that you might have heard before and, like me, ignored out of convenience. Copying and pasting code is a quick and easy solution in the moment. Unfortunately, it is also a sure way to accrue [technical debt](https://en.wikipedia.org/wiki/Technical_debt){ target="_blank" }. It is an easy way to implement the logic you need, but it comes with a catch: it (at least) doubles the length of your code. I made this mistake when writing `squashinformr` many times over by doing something like this: 
 
 ```{r, eval=FALSE}
-get_some_data <- function(category = c("mens", "womens", "both")) {
+get_some_data <- function(category = c("mens", "womens")) {
 
   if (category == "mens") {
   	## [Code to get men's data]
@@ -80,7 +80,7 @@ So what is the alternative strategy to copying and pasting? Writing functions. W
 While refactoring `squashinformr`, I wrote new helper functions that achieved subtasks within the package's main functions. The result looks something like this:
 
 ```{r, eval=FALSE}
-get_some_data <- function(category = c("mens", "womens", "both")) {
+get_some_data <- function(category = c("mens", "womens")) {
 
   if (category == "mens") {
     result <- helper_function(category = category)
@@ -124,6 +124,6 @@ I implemented a modified version of the [Standard CI Workflow](https://github.co
 
 ## Conclusion
 
-These are the three best practices I've been able to apply to my open source work with `squashinformr`. I determined software requirements by drawing high-level diagrams of the finished product. I reduced code redundancy and complexity writing helper functions. Lastly, I integrated continuous testing through GitHub Actions to ensure the package timely maintenance and wide accessibility.
+These are the three best practices I've been able to apply to my open source work with `squashinformr`. I determined software requirements by drawing high-level diagrams of the finished product. I reduced code redundancy and complexity by writing helper functions. Lastly, I integrated continuous testing through GitHub Actions to ensure timely maintenance and wider accessibility.
 
 After all that, my work is not finished. `squashinformr` is not perfect, it still needs help! If you are looking to get involved in open source, check out [the GitHub repository](https://github.com/HaydenMacDonald/squashinformr){ target="_blank" } if this project interests you. Feel free to open an issue or send me an email (hmd@needleinthehay.ca) with your idea. Thanks for reading!
