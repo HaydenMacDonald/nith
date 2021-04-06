@@ -8,10 +8,11 @@ output:
 slug: multigitminder
 image_preview: ""
 tags: 
-- github-actions
+- GitHub-Actions
 - Python
 - Docker
 - Beeminder
+- goals
 - habits
 description: "A GitHub Action for logging data points to Beeminder."
 ---
@@ -20,34 +21,72 @@ description: "A GitHub Action for logging data points to Beeminder."
 
 <p>Setting new goals is easy, achieving them is hard.</p>
 <p>I have used a variety of tools over the years to help me achieve my goals. For the last couple of years, I’ve used a combination of Google Docs, Google Calendar, Google Keep, Loop Habit Tracker, Trello, and good ol’ alarm clocks to schedule tasks and remind myself to get things done. Whether these goals were personal or professional, small or big, they would usually find their way into one of these tools with the hope that it would hold me accountable.</p>
-<p>When it came to my major goals (e.g. “do real good in school”, “get a job”), these tools were more organizational than motivational. If a goal is truly important to me, I don’t struggle to find internal motivation. Conversely, I have set many goals that sit in a grey area of internal motivation. These goals are much more difficult for me to achieve because they are deemed not-so-important or completely necessary, even though they are enjoyable and fulfilling activities. Unfortunately, their lack of priority means that they are often side-lined by major goals or leisurely activities.</p>
+<p>When it came to my major goals (e.g. “do real good in school”, “get a job”), these tools were more organizational than motivational. If a goal is truly important to me, I don’t struggle to find motivation. Conversely, I have set many goals that sit in a grey area of motivation. These goals are much more difficult for me to achieve because they are deemed “not-so-important” or “not completely necessary”, even though they are enjoyable and fulfilling activities. Unfortunately, their lack of priority means that they are often side-lined by major goals or leisurely activities.</p>
 <p>Examples of these “not-so-important” goals include:</p>
 <ul>
 <li>Read 12 books this year</li>
 <li>Go for a run 3 times per week</li>
 <li>Meditate for 10 minutes every day</li>
 </ul>
-<p>If you have set goals like these in the past, you will know how easy it is to say “Meh… I’ll do it tomorrow”, as you shovel potato chips into your mouth while wearing pajamas at noon because a pandemic is ravaging the outside world. Ok, maybe that imagery is a little too specific. The point is that the tools I was using to organize my goals were simple reminder engines. Reminders alone are useful if you are motivated and organized at the very moment they arrive. If you are not, they have no real power to hold you accountable. It is extremely easy to swipe away a push notification, especially when you are not in the mood for it.</p>
-<p>For the last 6 months, I have been using a tool that has radically changed my mindset regarding these types of goals. That tool is Beeminder.</p>
+<p>If you have set goals like these in the past, you will know how easy it is to never do them. The point is that the tools I was using to organize my goals were simple reminder engines. Reminders alone are useful, but only if you are motivated and organized at the very moment they arrive. If you are not, they have no real power. It is extremely easy to swipe away a push notification, especially when you are not in the mood for it. So for the last 6 months, I have been experimenting with a tool that has radically changed my mindset around these types of goals. That tool is Beeminder.</p>
 <blockquote>
 <p>“It’s reminders with a sting! Or, goal-tracking with teeth.”</p>
 </blockquote>
 <p>The simplified premise of Beeminder is as follows:</p>
-<ul>
+<ol style="list-style-type: decimal">
 <li>Set a goal</li>
 <li>Create a commitment contract (e.g. “I will run 3 times per week”)</li>
 <li>Input your data (manually or via app integrations)</li>
 <li>Stay on track or Beeminder charges your credit card</li>
-</ul>
+</ol>
 <p>In my experience, when I introduce Beeminder to people for the first time they usually think one of two things:</p>
-<ol style="list-style-type: decimal">
+<ul>
 <li>“Wow, that sounds great!”</li>
 <li>“Wow, that app would take all my money.”</li>
-</ol>
-<p>Fair enough, Beeminder is not for everyone because everyone is motivated differently. For me, Beeminder provided the missing piece of the puzzle for my lower priority goals.</p>
-<p>TALK ABOUT DELAYED GRATIFICATION AND BRINGING FUTURE CONSEQUENCES TO THE PRESENT</p>
-<p>Previous tools only provided a single type of motivation: a positive mental or physical reward in the future. Whereas with Beeminder, I still have the internal motivation to achieve these goals for my own fulfillment, but also I</p>
+</ul>
+<p>Fair enough, Beeminder is not for everyone because everyone is motivated differently. For me, Beeminder provided the missing piece of the puzzle for my lower priority goals. Knowing that I could lose money from neglecting my goals forced me to decide <a href="https://forum.beeminder.com/t/beeminder-vs-cbt/7624/26?u=dreev">whether being lazy in the moment was truly worth it</a> or if I should just do what I said I was going to do.</p>
+<p>So I wholeheartedly endorse Beeminder for those who think they would be motivated by this kind of motivational scheme. It’s worked great for me, particularly with keeping up with my reading and exercise goals through lockdown. I have lost money to the app for forgetting to read or not finding the time to exercise, but it has been completely worth it.</p>
+<div id="programming-goals" class="section level2">
+<h2>Programming goals</h2>
+<p>Since my initial success with the app, I’ve taken to Beeminding other goals. Sharpening my programming skills is a habit that I have been trying to keep up with for the last three years. It’s particularly important within data analytics and data science to be aware of technologies available and it’s an activity that I find to be quite fulfilling. So Beeminding my programming goals was a natural next step.</p>
+<p>Unfortunately, when I went to Beemind my programming goals through my GitHub activity I was left slightly disappointed with <a href="https://www.beeminder.com/gitminder">the official <code>gitminder</code> integration</a>. The integration only supports data tracking in the following scenarios:</p>
+<ul>
+<li>commits in a single repository</li>
+<li>issues closed in a single repository</li>
+<li>commits across your entire account</li>
+<li>issues closed across your entire account</li>
+</ul>
+<p>Having only these scenarios to choose from, Beeminder users are prevented from defining complex programming goals. For example, none of the above scenarios allow me to track a ‘learn python’ or ‘contribute to open source’ goal since I might be learning python or contributing to open source in multiple repositories. Conversely, what if I was learning python AND contributing to open source in a single repository? That scenario would require a single repository connected to multiple goals, which is not possible through <code>gitminder</code>. Additionally, programming activity is not just restricted to commits and closed issues. There are many other events on GitHub (e.g. pull requests, opened issues, publishing releases, deployment), that could be used to contribute towards Beeminder goals.</p>
+<p>So instead of giving in and manually tracking my programming goals, I built a tool that addresses all of the above concerns.</p>
+</div>
 <div id="multigitminder" class="section level2">
 <h2>multigitminder</h2>
-<p>I made a GitHub Action that helps Beeminder users capture their programming activity as data for their goals.</p>
+<p><a href="https://github.com/HaydenMacDonald/multigitminder"><code>multigitminder</code></a> is a <a href="https://github.com/features/actions">GitHub Action</a> that helps users capture their programming activity as data for their Beeminder goals. This tool allows users to connect any number of repos to any number of Beeminder goals based on <a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows">any combination of events supported by GitHub Actions</a>.</p>
+<div id="how-it-works" class="section level3">
+<h3>How it works</h3>
+<p>If you are not familiar with GitHub Actions, it as an automation framework built directly into GitHub. It allows you to automate software development tasks that you would otherwise do manually on GitHub. It is particularly useful for helping software developers maintain and organize their projects throughout all stages of a development cycle. GitHub Actions has a generous free plan available to all users on public repositories, making it especially useful for the open source community.</p>
+<p>So without getting into anymore detail on GitHub Actions, the important thing to know is that <code>multigitminder</code> is a tool that automatically captures and sends data to Beeminder based on your specifications.</p>
+<p>After installation, GitHub Actions will run <code>multigitminder</code> every time your chosen event type occurs (e.g. commit, closed issue, pull request). The action uses a simple python script (via <a href="https://github.com/narthur/pyminder"><code>pyminder</code></a>) to push data points to Beeminder’s API.</p>
+<p>You can install <code>multigitminder</code> on any repo you own by:
+- Creating a workflow file in a <code>.github/workflows/</code> directory (see <a href="/examples">examples directory</a>).
+- Specifying your goal parameters in the workflow file.
+- Storing your Beeminder username and authorization token as secrets in your repo.</p>
+<p>A basic workflow file using <code>multigitminder</code> would look like this:</p>
+<pre class="yaml"><code>name: multigitminder
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  multigitminder:
+    runs-on: ubuntu-latest
+    name: multigitminder
+    steps:
+      - name: multigitminder
+        uses: HaydenMacDonald/multigitminder@main
+        with:
+          USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
+          AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
+          GOAL: YOUR_GOAL_NAME_HERE</code></pre>
+</div>
 </div>
