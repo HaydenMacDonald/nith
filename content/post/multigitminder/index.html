@@ -28,7 +28,7 @@ description: "A GitHub Action for logging data points to Beeminder."
 <li>Go for a run 3 times per week</li>
 <li>Meditate for 10 minutes every day</li>
 </ul>
-<p>If you have set goals like these in the past, you will know how easy it is to never do them. The point is that the tools I was using to organize my goals were simple reminder engines. Reminders alone are useful, but only if you are motivated and organized at the very moment they arrive. If you are not, they have no real power. It is extremely easy to swipe away a push notification, especially when you are not in the mood for it. So for the last 6 months, I have been experimenting with a tool that has radically changed my mindset around these types of goals. That tool is <a href="https://www.beeminder.com/" target="_blank">Beeminder</a>.</p>
+<p>If you have set goals like these in the past, you will know how easy it is to never do them. These goals were particularly easy to ignore because the tools I was using were simple reminder engines. Reminders alone are useful, but only if you are motivated and organized at the very moment they arrive. If you are not, they have no real power. It is extremely easy to swipe away a push notification, especially when you are not in the mood for it. So for the last 6 months, I have been experimenting with a tool that has radically changed my mindset around these types of goals. That tool is <a href="https://www.beeminder.com/" target="_blank">Beeminder</a>.</p>
 <div id="its-reminders-with-a-sting" class="section level2">
 <h2>“It’s reminders with a sting!”</h2>
 <p>The simplified premise of Beeminder is as follows:</p>
@@ -44,32 +44,32 @@ description: "A GitHub Action for logging data points to Beeminder."
 <li>“Wow, that app would take all my money.”</li>
 </ul>
 <p>Fair enough. Beeminder is not for everyone. For me, Beeminder provided the missing piece of the puzzle for my lower priority goals. Knowing that I could lose money from neglecting my goals forced me to decide <a href="https://forum.beeminder.com/t/beeminder-vs-cbt/7624/26?u=dreev" target="_blank">whether being lazy in the moment was truly worth it</a> or if I should just do what I said I was going to do.</p>
-<p>So I wholeheartedly endorse Beeminder for those who think they would be motivated by this kind of motivational scheme. It’s worked great for me, particularly with keeping up with my reading and exercise goals through lockdown. I have lost money ($25 USD at time of writing) for forgetting to read or not finding the time to exercise, but using Beeminder has been completely worth it.</p>
+<p>So I wholeheartedly endorse Beeminder for those who think this kind of motivational scheme would work for them. It’s worked great for me, particularly with keeping up with my reading and exercise goals through lockdown. I <em>have</em> lost money ($25 USD at time of writing) for forgetting to read or not finding the time to exercise, but using Beeminder has been completely worth it.</p>
 </div>
 <div id="programming-goals" class="section level2">
 <h2>Programming goals</h2>
-<p>Since my initial success with the app, I’ve taken to Beeminding other goals. Sharpening my programming skills is a habit that I have been trying to keep up with for the last three years. This habit is important for my career and it’s also an activity that I find to be quite fulfilling. So Beeminding my programming goals was a natural next step.</p>
-<p>Unfortunately, I was left slightly disappointed with <a href="https://www.beeminder.com/gitminder" target="_blank">the official <code>gitminder</code> integration</a>. The integration only supports data tracking in the following scenarios:</p>
+<p>Now, because I’m a very sane person, I’ve taken to Beeminding other goals since my initial success with reading and exercising. Staying up-to-date with new technologies and programming skills is important for my career. So Beeminding my programming activity was a natural next step.</p>
+<p>Beeminder provides an official integration with GitHub, called <a href="https://www.beeminder.com/gitminder" target="_blank"><code>gitminder</code></a>, that left me slightly disappointed. The integration only supports data tracking in the following scenarios:</p>
 <ul>
-<li>commits in a single repository</li>
-<li>issues closed in a single repository</li>
-<li>commits across your entire account</li>
-<li>issues closed across your entire account</li>
+<li>Commits in a single repository</li>
+<li>Issues closed in a single repository</li>
+<li>Commits across your entire account</li>
+<li>Issues closed across your entire account</li>
 </ul>
-<p>Having only these scenarios to choose from, Beeminder users are prevented from defining complex programming goals. For example, the configurations above are not flexible enough for a ‘learn python’ or ‘contribute to open source’ goal. These goals could span multiple repositories, but would likely not include every repository in my account. Conversely, what if I was learning python AND contributing to open source in a single repository? That scenario would require a single repository connected to multiple goals, which is not possible through <code>gitminder</code>. Additionally, programming activity is not just restricted to commits and closed issues. There are many other events on GitHub (e.g. pull requests, opened issues, publishing releases, deployment), that could be used to contribute towards Beeminder goals.</p>
+<p>Having only these scenarios to choose from, Beeminder users are prevented from defining complex programming goals. For example, the configurations above are not flexible enough for a “Learn Python” or “Contribute to Open Source” goal. These goals could span multiple repositories, but would likely not include every repository in my account. Conversely, what if I was learning python AND contributing to open source in a single repository? That scenario would require a single repository connected to multiple goals, which is not possible through <code>gitminder</code>. Additionally, programming activity is not just restricted to commits and closed issues. There are many other events on GitHub (e.g. pull requests, opened issues, publishing releases, deployment), that could be used to contribute towards Beeminder goals.</p>
 <p>So instead of giving in and manually tracking my programming goals, I built a tool that addresses all of the above concerns.</p>
 </div>
 <div id="multigitminder" class="section level1">
 <h1>multigitminder</h1>
-<p><a href="https://github.com/HaydenMacDonald/multigitminder" target="_blank"><code>multigitminder</code></a> is a <a href="https://github.com/features/actions" target="_blank">GitHub Action</a> that helps users capture their programming activity as data for their Beeminder goals. This tool allows users to connect any number of GitHub repositories to any number of Beeminder goals based on <a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows" target="_blank">any combination of events supported by GitHub Actions</a>.</p>
+<p><a href="https://github.com/marketplace/actions/multigitminder" target="_blank"><code>multigitminder</code> is a GitHub Action</a> that helps users capture their programming activity as data for their Beeminder goals. This tool allows users to connect any number of GitHub repositories to any number of Beeminder goals based on <a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows" target="_blank">any combination of events supported by GitHub Actions</a>.</p>
 <div id="how-it-works" class="section level2">
 <h2>How it works</h2>
-<p>If you are not familiar with GitHub Actions, it as an automation framework built directly into GitHub. It allows you to automate software development tasks that you would otherwise do manually on GitHub. It is particularly useful for helping software developers maintain and organize their projects throughout all stages of a development cycle. GitHub Actions has a generous free plan available to all users on public repositories, making it especially useful for the open source community.</p>
-<p>So without getting into anymore detail on GitHub Actions, the important thing to know is that <code>multigitminder</code> is a tool that automatically captures and sends data to Beeminder based on your specifications.</p>
-<p>After installation, GitHub Actions will run <code>multigitminder</code> every time your chosen event type occurs (e.g. commit, closed issue, pull request) in your repository. The action uses a simple python script (via <a href="https://github.com/narthur/pyminder" target="_blank"><code>pyminder</code></a>) to push data points to Beeminder’s API.</p>
+<p>If you are not familiar with <a href="https://github.com/features/actions" target="_blank">GitHub Actions</a>, it as an automation framework built directly into GitHub. It allows you to automate software development tasks that you would otherwise do manually on GitHub. It is primarily used to help software developers maintain and organize their projects. The great thing about GitHub Actions is that it can be used to automate <em>any</em> task, not just maintenance or organizational tasks.</p>
+<p>So without getting into anymore detail on GitHub Actions, the important thing to know is that <code>multigitminder</code> is a GitHub Action that automatically captures and sends data to Beeminder based on your specifications.</p>
+<p>After installation, GitHub Actions will run <code>multigitminder</code> every time your chosen event (e.g. commit, closed issue, pull request) occurs in or to your repository. The action uses a simple python script (via <a href="https://github.com/narthur/pyminder" target="_blank"><code>pyminder</code></a>) to push datapoints to Beeminder’s API.</p>
 <p>You can install <code>multigitminder</code> on any repository you own by:</p>
 <ul>
-<li>Creating a workflow file in a <code>.github/workflows/</code> directory</li>
+<li>Creating a <code>.yml</code> workflow file in a <code>.github/workflows/</code> directory</li>
 <li>Specifying your goal parameters in the workflow file</li>
 <li>Storing your Beeminder username and authorization token as secrets in your repo</li>
 </ul>
@@ -85,7 +85,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -97,7 +97,7 @@ After adding that workflow file, you can add your secrets to GitHub by going to 
 <div id="basic-workflows" class="section level2">
 <h2>Basic Workflows</h2>
 <p>Perhaps you want data points to be submitted with every push and closed issue:</p>
-<pre class="yaml"><code>name: multigitminder-issue-closed
+<pre class="yaml"><code>name: multigitminder-push-issue-closed
 on:
   push:
     branches: [ main ]
@@ -110,7 +110,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -128,7 +128,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
@@ -141,7 +141,7 @@ Again, <code>multigitminder</code> can be configured to trigger on <a href="http
 <h2>Additional parameterization</h2>
 <div id="specific-commits" class="section level3">
 <h3>Specific Commits</h3>
-<p><code>multigitminder</code> can also be configured so that only specific commits trigger the workflow.</p>
+<p><code>multigitminder</code> can also be configured with a conditional statement, so that only specific commits trigger the workflow.</p>
 <pre class="yaml"><code>name: multigitminder-specific-commits
 on:
   push:
@@ -154,7 +154,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -176,7 +176,7 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
@@ -209,7 +209,7 @@ jobs:
           percentage: true
       # multigitminder
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
@@ -224,8 +224,6 @@ jobs:
 <p>Lastly, what if you want activity in a repository to contribute to multiple Beeminder goals? You can achieve this by creating a workflow file for each goal, changing the input parameters accordingly. For example, I want closed issues in my repository to contribute towards a ‘maintenance’ Beeminder goal…</p>
 <pre class="yaml"><code>name: multigitminder-issue-closed
 on:
-  push:
-    branches: [ main ]
   issues:
     types: [ closed ]
 
@@ -235,11 +233,11 @@ jobs:
     name: multigitminder
     steps:
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
           AUTH_TOKEN: ${{ secrets.BEEMINDER_AUTH_TOKEN }}
-          GOAL: YOUR_GOAL_NAME_HERE</code></pre>
+          GOAL: maintenance</code></pre>
 <p> <br />
 and pushes to the main and development branches to contribute towards a ‘write-python’ goal (provided python is found in the repo)…</p>
 <pre class="yaml"><code>name: multigitminder-linguist
@@ -264,7 +262,7 @@ jobs:
           percentage: true
       # multigitminder
       - name: multigitminder
-        uses: HaydenMacDonald/multigitminder@main
+        uses: HaydenMacDonald/multigitminder@v1.0.0
         id: multigitminder
         with:
           USERNAME: ${{ secrets.BEEMINDER_USERNAME }}
@@ -278,7 +276,8 @@ With both of these workflow files in my <code>./github/workflows</code> director
 </div>
 <div id="conclusion" class="section level2">
 <h2>Conclusion</h2>
-<p>If this project interests you, please experiment with <code>multigitminder</code>! I hope this tools opens the doors for modular programming goals in Beeminder. At least until the official GitHub integration becomes more flexible 😄</p>
+<p>If this project interests you, please experiment with <code>multigitminder</code>! Check out the action on <a href="https://github.com/marketplace/actions/multigitminder" target="_blank">GitHub Marketplace</a> or its <a href="https://github.com/HaydenMacDonald/multigitminder" target="_blank">home repository</a> for more information.</p>
+<p>I hope this tools opens the doors for modular programming goals in Beeminder. At least until the official GitHub integration becomes more flexible 😄</p>
 </div>
 <div id="help" class="section level2">
 <h2>Help</h2>
