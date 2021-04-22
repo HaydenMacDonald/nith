@@ -23,7 +23,7 @@ library(emo)
 
 Setting new goals is easy, achieving them is hard.  
 
-I have used a variety of tools over the years to help me achieve my goals. For the last couple of years, I've used a combination of Google Docs, Google Calendar, Google Keep, Loop Habit Tracker, Trello, and good ol' alarm clocks to schedule tasks and remind myself to get things done. Whether these goals were personal or professional, small or big, they would usually find their way into one of these tools with the hope that it would hold me accountable. 
+I have used a variety of tools over the years to help me achieve my goals. I have used a combination of Google Docs, Google Calendar, Google Keep, Loop Habit Tracker, Trello, and good ol' alarm clocks to schedule tasks and remind myself to get things done. Whether these goals were personal or professional, small or big, they would usually find their way into one of these tools with the hope that it would hold me accountable. 
 
 When it came to my major goals (e.g. "do real good in school", "get a job"), these tools were more organizational than motivational. If a goal is truly important to me, I don't struggle to find motivation. Conversely, I have set many goals that sit in a grey area of motivation. These goals are much more difficult for me to achieve because they are deemed "not-so-important" or "not completely necessary", even though they are enjoyable and fulfilling activities. Unfortunately, their lack of priority means that they are often side-lined by major goals or leisurely activities.
 
@@ -33,7 +33,7 @@ Examples of these "not-so-important" goals include:
 - Go for a run 3 times per week
 - Meditate for 10 minutes every day
 
-If you have set goals like these in the past, you will know how easy it is to never do them. These goals were particularly easy to ignore because the tools I was using were simple reminder engines. Reminders alone are useful, but only if you are motivated and organized at the very moment they arrive. If you are not, they have no real power. It is extremely easy to swipe away a push notification, especially when you are not in the mood for it. So for the last 6 months, I have been experimenting with a tool that has radically changed my mindset around these types of goals. That tool is [Beeminder](https://www.beeminder.com/){target="_blank"}.  
+If you have set goals like these in the past, you will know how easy it is to avoid them. These goals were particularly easy to ignore because the tools I was using were simple reminder engines. Reminders alone are useful, but only if you are motivated and organized at the very moment they arrive. If you are not, they have no real power. It is extremely easy to swipe away a push notification, especially when you are not in the mood for it. So for the last 6 months, I have been experimenting with a tool that has radically changed my mindset around these types of goals. That tool is [Beeminder](https://www.beeminder.com/){target="_blank"}.  
 
 ## "It's reminders with a sting!"
 
@@ -47,7 +47,7 @@ The simplified premise of Beeminder is as follows:
 In my experience, when I introduce Beeminder to people for the first time they usually think one of two things:
 
 - "Wow, that sounds great!"
-- "Wow, that app would take all my money."
+- "Wow, that app would take all of my money."
 
 Fair enough. Beeminder is not for everyone. For me, Beeminder provided the missing piece of the puzzle for my lower priority goals. Knowing that I could lose money from neglecting my goals forced me to decide [whether being lazy in the moment was truly worth it](https://forum.beeminder.com/t/beeminder-vs-cbt/7624/26?u=dreev){target="_blank"} or if I should just do what I said I was going to do.  
 
