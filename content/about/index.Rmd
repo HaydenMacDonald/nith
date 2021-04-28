@@ -11,7 +11,7 @@ This is my data blog. To read through previous posts, see the <a href="/archives
 
 I hold a Master of Science in Management &#8211; Business Analytics from Ivey Business School, Western University. For a full list of my credentials, see <a href="/cv.pdf" target="_blank">my resume</a>.  
 
-My professional interests include technology, research, statistics, A/B testing, data visualization, and product analytics. In my spare time, I enjoy film, cooking, squash, SCUBA diving, birding, and eSports.  
+My professional interests include technology, research, statistics, A/B testing, data visualization, and product analytics. In my spare time, I enjoy contributing to open source, cooking, SCUBA diving, and hiking. I also love watching movies, football, squash, and eSports.  
 &nbsp;  
 
 ### Why is your blog called "Needle in the Hay"?
@@ -33,6 +33,7 @@ My goal for this blog is to create quality content that documents my professiona
 #### Author
 
 - <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">`squashinformr`</a>
+- <a href="https://github.com/marketplace/actions/multigitminder" target="_blank">`multigitminder`</a>
 - <a href="/post/hmdrmd/" target="_blank">`hmdrmd`</a>
 
 #### Contributor
