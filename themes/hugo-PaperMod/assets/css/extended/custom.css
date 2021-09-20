@@ -63,7 +63,7 @@ pre {
 }
 
 :root {
-  --hljs-bg: #e0e0e0;
+  --hljs-bg: #f3f3f3;
   --code-bg: var(--theme);
   --border: #9698963;
 }
