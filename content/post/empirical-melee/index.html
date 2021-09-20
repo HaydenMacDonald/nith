@@ -31,12 +31,19 @@ description: "Empirical Bayes Estimation of Hungrybox's 2017 Character Matchup W
 <p>In late 2017, Hungrybox won five consecutive high level tournaments, much to the chagrin of his opponents and critics. Displeasure over his dominance led to some online discussions of “What should top players do to beat Hungrybox?”.</p>
 <p>For context, <a href="https://www.ssbwiki.com/Fox_(SSBM)">Fox from the StarFox series</a> is considered to be the best character to use versus Jigglypuff, as he is the best, but also the most technically challenging, character in the game. Fans in turmoil doubted Fox and discussed which alternate characters or strategies might be effective against Hungrybox. These discussions among fans became the subject of ridicule by Leffen, currently ranked #4 in the world, in the following tweet:<br />
  <br />
-{{% tweet "927971399301464065" %}}
+<blockquote>
+<p>i was thinking, what should we do to beat hungrybox? as if it were fate, i came upon this reddit thread.</p>
+<p>Now I know exactly what not to do!</p>
+<p>&#8212; Leffen (@TSM_Leffen) November 7, 2017</p>
+</blockquote>
  <br />
 Leffen’s tweet features screenshots of fan comments on Reddit that suggest absurd or simplistic strategies that disregard the logic behind high level play. His tweet should speak for itself, but there is a large knowledge gap between fans and top players when it comes to playing against the best player in the world.</p>
 <p>The sentiment of Leffen’s tweet is later echoed by Tafo, another community member.<br />
  <br />
-{{% tweet "927976731905900544" %}}
+<blockquote>
+  <p>Imagine how many Young Link comments that would show up if I showed this yesterday (Hbox's 2017 char data)</p>
+  <p>&#8212; CLG Tafo (@tafokints) November 7, 2017</p>
+</blockquote>
  <br />
 Although Tafo’s comments are also made at the expense of fans, he includes a dataset of Hungrybox’s character matchup data for 2017 (against players in the top 50). Tafo effectively highlights a specific misunderstanding that fans have about character matchups in Melee.</p>
 <p>The essential sentiment is that fans tend to look past sample size when making inferences on matchup win rates or general performance.</p>
@@ -136,7 +143,7 @@ H.var &lt;- var(Hbox$WinAverage)</code></pre>
 Hbox.est</code></pre>
 <pre><code>## $alpha
 ## [1] 8.500409
-## 
+##
 ## $beta
 ## [1] 3.076596</code></pre>
 <p> <br />
@@ -154,7 +161,7 @@ The resulting alpha and beta parameters will inform the shape of our beta distri
  </p>
 <pre class="r"><code>#How does empirical Bayes estimation change the matchup averages?
 Hbox.eb &lt;- Hbox %&gt;%
-    mutate(eb_estimate = 
+    mutate(eb_estimate =
              (Wins + Hbox.est$alpha) / (TotalGames + Hbox.est$alpha + Hbox.est$beta))
 
 Hbox.eb %&gt;%
@@ -218,8 +225,8 @@ Zain’s astonishing rise through the Melee rankings led him to beat Hungrybox i
 <pre class="r"><code>Hbox.est2 &lt;- fitdistr(Hbox$WinAverage,dbeta,list(shape1=1,shape2=1), lower = c(0,0))
 
 Hbox.est2</code></pre>
-<pre><code>##     shape1      shape2  
-##   10.403528    3.780885 
+<pre><code>##     shape1      shape2
+##   10.403528    3.780885
 ##  ( 4.665568) ( 1.625258)</code></pre>
 <p> <br />
 Our estimates of alpha and beta have not changed substantially, but let’s see how this method may have differed in terms of our conclusions.</p>

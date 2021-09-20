@@ -3,6 +3,7 @@ baseURL: 'https://needleinthehay.ca/'
 languageCode: en-us
 title: Needle in the Hay
 googleAnalytics: UA-125960941-1
+ignoreFiles: ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 menu:
   main:
     - identifier: archives
@@ -93,3 +94,8 @@ outputs:
     - HTML
     - RSS
     - JSON
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
