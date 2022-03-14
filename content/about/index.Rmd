@@ -34,11 +34,11 @@ My goal for this blog is to create quality content that documents my professiona
 
 - <a href="https://github.com/HaydenMacDonald/squashinformr" target="_blank">`squashinformr`</a>
 - <a href="https://github.com/marketplace/actions/multigitminder" target="_blank">`multigitminder`</a>
-- <a href="/post/hmdrmd/" target="_blank">`hmdrmd`</a>
 
 #### Contributor
 
 - <a href="https://github.com/davidsjoberg/ggbump" target="_blank">`ggbump`</a>
+- <a href="https://github.com/amosbastian/fpl" target="_blank">`fpl`</a>
 - <a href="https://github.com/johncassil/stringr.plus" target="_blank">`stringr.plus`</a>
 - <a href="https://github.com/HaydenMacDonald/lubridateExtras" target="_blank">`lubridateExtras`</a>
 - <a href="https://github.com/philip-khor/bnmr" target="_blank">`bnmr`</a>
